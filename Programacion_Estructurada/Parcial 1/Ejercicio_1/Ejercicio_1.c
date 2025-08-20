@@ -7,14 +7,12 @@ Por ejemplo, si el precio que introduce el usuario es 300 y el descuento 20, el 
 #include <stdio.h>
 
 int main() {
-  int price = 0;
+  float price = 0;
   int disc_percentage = 0;
-  float result;
 
   do {
     printf("Ingrese el precio del producto: ");
-    scanf("%d", &price);
-    printf("Precio: %i", price);
+    scanf("%f", &price);
   } while(price < 0);
 
   do{
@@ -22,7 +20,7 @@ int main() {
     scanf("%d", &disc_percentage);
   } while(disc_percentage < 0 || disc_percentage > 100);
 
-  result = price - ((price / 100) * (disc_percentage));
+  float result = price - ((price / 100) * (disc_percentage));
 
   printf("El precio con descuento es de: %.2f$", result);
 
