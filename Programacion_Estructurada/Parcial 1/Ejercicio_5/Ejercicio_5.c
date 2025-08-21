@@ -7,9 +7,10 @@ Escribe un programa que pida al usuario los siguientes datos: días, horas y minu
 #include <stdio.h>
 
 int main() {
-    int days;
-    int hours;
-    int minutes;
+    int days = 0;
+    int hours = 0;
+    int minutes = 0;
+    int seconds = 0;
 
     do {
         printf("Ingresa los días a convertir: ");
@@ -24,7 +25,7 @@ int main() {
         scanf("%d", &minutes);
     } while(minutes < 0 || minutes > 59);
 
-    int seconds = ((((days*24)+hours)*60)+minutes)*60;
+    seconds = ((((days*24)+hours)*60)+minutes)*60;
 
     printf("Los datos ingresados equivalen a %d segundos", seconds);
 

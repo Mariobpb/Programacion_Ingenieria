@@ -8,6 +8,21 @@ Req = (R1 * R2) / (R1 + R2)
 #include <stdio.h>
 
 int main(){
+    int R1 = 0;
+    int R2 = 0;
+    float Rf = 0;
+
+    do{
+        printf("Ingrese en ohms la resistencia R1: ");
+        scanf("%d", &R1);
+    }while(!(R1 > 0));
+    do{
+        printf("Ingrese en ohms la resistencia R1: ");
+        scanf("%d", &R2);
+    }while(!(R2 > 0));
+
+    Rf = (R1 * R2) / (R1 + R2);
+    printf("Rf = %.2f", Rf);
 
     return 0;
 }

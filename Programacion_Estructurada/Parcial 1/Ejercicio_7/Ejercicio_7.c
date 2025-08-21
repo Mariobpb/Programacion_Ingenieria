@@ -5,8 +5,30 @@ sqrt es una función que devuelve la raíz cuadrada, para poder invocarla es nec
 */
 
 #include <stdio.h>
+#include <math.h>
 
 int main(){
+    int a = 0;
+    int b = 0;
+    int c = 0;
+
+    printf("Ingrese los valores de:\na: ");
+    scanf("%d", &a);
+    printf("b: ");
+    scanf("%d", &b);
+    printf("c: ");
+    scanf("%d", &c);
+
+    float x1, x2;
+
+    int discriminante = (b*b)-(4*a*c);
+    if (discriminante < 0){
+        printf("El resultado no es un número real");
+    } else {
+        x1 = ((b*-1) + sqrt(discriminante)) / (2*a);
+        x2 = ((b*-1) - sqrt(discriminante)) / (2*a);
+        printf("Resultados:\nx1 = %.4f\nx2 = %.4f", x1, x2);
+    }
 
     return 0;
 }
