@@ -21,7 +21,7 @@ int main(){
         scanf("%d", &R2);
     }while(!(R2 > 0));
 
-    Rf = (R1 * R2) / (R1 + R2);
+    Rf = ((float)R1 * R2) / (R1 + R2);
     printf("Rf = %.2f", Rf);
 
     return 0;

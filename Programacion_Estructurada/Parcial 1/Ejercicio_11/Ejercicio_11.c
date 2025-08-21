@@ -13,6 +13,11 @@ else
 #include <stdio.h>
 
 int main(){
+    int x = 2, y = 6, z = 4;
+    if (x<y || x<z)
+        printf("verdadero");
+    else
+        printf("falso");
 
     return 0;
 }
