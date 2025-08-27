@@ -1,8 +1,8 @@
 /*
-Ejercicio 2: Cálculo de área y perímetro
+Ejercicio 2: Cï¿½lculo de ï¿½rea y perï¿½metro
 
-Escribe un programa que pregunte al usuario los dos lados de un rectángulo y presente por pantalla el
-cálculo del perímetro (suma de los lados) y el área (base por altura).
+Escribe un programa que pregunte al usuario los dos lados de un rectï¿½ngulo y presente por pantalla el
+cï¿½lculo del perï¿½metro (suma de los lados) y el ï¿½rea (base por altura).
 */
 
 #include <stdio.h>
@@ -12,19 +12,19 @@ int main() {
     float height = 0;
 
     do {
-        printf("Ingresa el ancho del rectángulo: ");
+        printf("Ingresa el ancho del rectÃ¡ngulo: ");
         scanf("%f", &width);
         printf("Ancho: %f \n", width);
     }while(width <= 0);
 
     do {
-        printf("Ingresa la altura del rectángulo: ");
+        printf("Ingresa la altura del rectÃ¡ngulo: ");
         scanf("%f", &height);
     }while(height <= 0);
 
     float area = width * height;
 
-    printf("El área del rectángulo es de : %.3f unidades cuadradas", area);
+    printf("El ï¿½rea del rectï¿½ngulo es de : %.3f unidades cuadradas", area);
 
     return 0;
 }
