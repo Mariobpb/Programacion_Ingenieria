@@ -1,9 +1,9 @@
 /*
-Ejercicio 1: ¿Qué imprime?.
+Ejercicio 2: ¿Qué imprime?.
 ¿Qué imprime el siguiente fragmento de código? Compruébalo.
-int i;
+int i=4, x=5;
 for(i=0; i<4; i++){
- printf(“>>> %d: %d\n”,i,i*i*2);
+ printf(“>>> %d: %d\n”,i,i*x);
  }
 */
 
@@ -11,10 +11,10 @@ for(i=0; i<4; i++){
 
 int main()
 {
-    int i;
+    int i = 4, x = 5;
     for (i = 0; i < 4; i++)
     {
-        printf(">>> %d: %d\n",i,i*i*2);
+        printf(">>> %d: %d\n", i, i * x);
     }
 
     return 0;
