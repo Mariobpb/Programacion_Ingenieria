@@ -26,7 +26,6 @@ int main()
     for (int y = 99; y >= 0; y--)
     {
         int xR = resolverX(a, b, c, y-50);
-        printf("x%d=%d\n", y, xR);
         for (int x = 0; x < 100; x++)
         {
             if (y != 50)
@@ -39,7 +38,7 @@ int main()
                 plano[x][y] = '*';
         }
     }
-    printf("\n");
+    printf("\nLa ecuación quedó de la siguiente manera:\n%.2fx+%.2fy+%.2f=0\n", a, b, c);
     for (int y = 99; y >= 0; y--)
     {
         for (int x = 0; x < 100; x++)
