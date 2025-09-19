@@ -13,13 +13,12 @@ int main()
     scanf("%d", &num1);
     printf("Ingrese el segundo numero: ");
     scanf("%d", &num2);
-    if(num1 < num2){
+    if (num1 < num2)
         printf("%d < %d", num1, num2);
-    } else if(num1 > num2){
+    else if (num1 > num2)
         printf("%d > %d", num1, num2);
-    } else {
+    else
         printf("%d = %d", num1, num2);
-    }
-    
+
     return 0;
 }

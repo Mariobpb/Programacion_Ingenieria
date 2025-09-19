@@ -8,7 +8,7 @@ mayor, y cuál es el menor.
 
 int main()
 {
-    int nums[3], numsOrd[3], temp;;
+    int nums[3], numsOrd[3], temp;
     for (int i = 0; i < 3; i++)
     {
         printf("Ingrese el numero #%d ", i+1);

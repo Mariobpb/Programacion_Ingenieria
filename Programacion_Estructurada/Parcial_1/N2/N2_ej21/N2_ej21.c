@@ -1,5 +1,5 @@
 /*
-Ejercicio 21: Potencias. 
+Ejercicio 21: Potencias.
 Realizar un programa que pida la base y el exponente y calcule la potencia.
 */
 
@@ -14,10 +14,8 @@ int main()
     scanf("%d", &exponente);
     res = 1;
     for (int i = 0; i < exponente; i++)
-    {
         res *= base;
-    }
     printf("%d^%d = %d", base, exponente, res);
-    
+
     return 0;
 }

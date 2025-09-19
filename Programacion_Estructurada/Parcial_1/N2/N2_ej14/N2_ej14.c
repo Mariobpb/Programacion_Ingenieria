@@ -26,9 +26,7 @@ int main()
         for (int i = numMin; i <= numMax; i++)
         {
             if ((i % 2 == 0))
-            {
                 printf("%d ", i);
-            }
         }
         break;
     case 'i':
@@ -36,9 +34,7 @@ int main()
         for (int i = numMin; i <= numMax; i++)
         {
             if ((i % 2 == 1) || (i % 2 == -1))
-            {
                 printf("%d ", i);
-            }
         }
         break;
     default:
