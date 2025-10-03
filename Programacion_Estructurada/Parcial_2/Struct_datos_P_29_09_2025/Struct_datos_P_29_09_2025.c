@@ -13,10 +13,10 @@ void mostrarDatos(datos_P p);
 
 int main()
 {
-    datos_P grupo[3];
-    for (int i = 0; i < 3; i++)
+    datos_P grupo[30];
+    for (int i = 0; i < 30; i++)
         grupo[i] = ingresarDatos();
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 30; i++)
         mostrarDatos(grupo[i]);
 
     return 0;
@@ -41,7 +41,7 @@ int verificarReg(char *r)
     int i = 0;
     while (r[i] != '\n')
     {
-        if (!((r[i] > '0') && (r[i] < '9')))
+        if (!((r[i] >= '0') && (r[i] <= '9')))
             return 0;
         i++;
     }
@@ -49,5 +49,5 @@ int verificarReg(char *r)
 }
 void mostrarDatos(datos_P p)
 {
-    printf("\nNombre: %sEdad: %sRegistro: %s\n", p.name, p.email, p.registro);
+    printf("\nNombre: %sEmail: %sRegistro: %s\n", p.name, p.email, p.registro);
 }
