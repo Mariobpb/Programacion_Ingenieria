@@ -4,8 +4,8 @@ void leerCadena(char *c);
 void reemplazarEDtoNull(char *c);
 void mostrarPalabras(char *c);
 int contarPalabras(char *c);
-int recorrerPalabra(char *c, int p);
-int recorrerEspacios(char *c, int p);
+int recorrerPalabra(char *c, int i);
+int recorrerEspacios(char *c, int i);
 
 int main()
 {
@@ -45,15 +45,15 @@ int contarPalabras(char *c)
     }
     return numPal;
 }
-int recorrerEspacios(char *c, int p)
+int recorrerEspacios(char *c, int i)
 {
-    while (c[p] != '\0' && c[p] == ' ')
-        p++;
-    return p;
+    while (c[i] != '\0' && c[i] == ' ')
+        i++;
+    return i;
 }
-int recorrerPalabra(char *c, int p)
+int recorrerPalabra(char *c, int i)
 {
-    while (c[p] != ' ' && c[p] != '\0')
-        p++;
-    return p;
+    while (c[i] != ' ' && c[i] != '\0')
+        i++;
+    return i;
 }
