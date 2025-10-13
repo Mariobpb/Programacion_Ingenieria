@@ -35,7 +35,7 @@ int main()
     do
     {
         p = &lista[0];
-        printf("\nQué desea hacer?\n1-Mostrar lista completa\n2-Buscar por nombre\n3-Buscar por correo\n4-Buscar por registro\n0-Salir\n");
+        printf("\nQué desea hacer?\n1-Mostrar lista\n2-Buscar por nombre\n3-Buscar por correo\n4-Buscar por registro\n0-Salir\n");
         scanf("%d", &opcion);
         getchar();
         switch (opcion)
