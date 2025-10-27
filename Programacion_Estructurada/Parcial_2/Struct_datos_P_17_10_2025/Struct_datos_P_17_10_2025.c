@@ -15,7 +15,9 @@ void ingresarName(DP *);
 void ingresarLastName(DP *);
 void ingresarReg(DP *);
 void limpiarEspacios(char *);
-void cambiarCadenaMinusculas(char *, char *);
+int verificarCaracteresAlf(char *);
+int verificarCaracteresNum(char *);
+void cambiarCadenaMinusculas(char *);
 void agregarLista2(DP *, DP *);
 void imprimirDP(DP *);
 void mostrarLista(DP *);
@@ -77,9 +79,16 @@ int main()
 
 void ingresarEmail(DP *p)
 {
-    printf("Email: ");
-    fgets(p->email, 50, stdin);
-    limpiarEspacios(p->email);
+    char aux[50];
+    do
+    {
+        printf("Email: ");
+        fgets(aux, 50, stdin);
+        limpiarEspacios(aux);
+        cambiarCadenaMinusculas(aux);
+    } while (!verificarCaracteresAlf(aux));
+    strcpy(p->email, aux);
+    printf("\n\n|%s| Tabien\n\n", aux);
 }
 void ingresarName(DP *p)
 {
@@ -108,11 +117,33 @@ void limpiarEspacios(char *c)
         c[j++] = c[i++];
     c[j] = '\0';
 }
-void cambiarCadenaMinusculas(char *c, char *cR)
+int verificarCaracteresAlf(char *c)
 {
-    strcpy(cR, c);
-    for (int i = 0; cR[i] != '\0'; i++)
-        cR[i] = tolower(cR[i]);
+    int i = 0;
+    while (c[i] != '\0')
+    {
+        printf("\nRevisando: %c", c[i]);
+        if (!(c[i] >= 'a' && c[i] >= 'z'))
+            return 0;
+        i++;
+    }
+    return 1;
+}
+int verificarCaracteresNum(char *c)
+{
+    int i = 0;
+    while (c[i] != '\0')
+    {
+        if (!(c[i] >= '0' && c[i] >= '9'))
+            return 0;
+        i++;
+    }
+    return 1;
+}
+void cambiarCadenaMinusculas(char *c)
+{
+    for (int i = 0; c[i] != '\0' && i < 50; i++)
+        c[i] = tolower(c[i]);
 }
 void agregarLista2(DP *p, DP *p2)
 {
@@ -121,12 +152,14 @@ void agregarLista2(DP *p, DP *p2)
     for (int i = 0; i < 15; i++)
     {
         int repetido = 0;
-        cambiarCadenaMinusculas(p[i].lastName, temp1);
+        strcpy(temp1, p[i].lastName);
+        cambiarCadenaMinusculas(temp1);
         for (int j = 0; j < 15; j++)
         {
             if (i != j)
             {
-                cambiarCadenaMinusculas(p[j].lastName, temp2);
+                strcpy(temp2, p[j].lastName);
+                cambiarCadenaMinusculas(temp2);
                 if (strcmp(temp1, temp2) == 0)
                 {
                     repetido = 1;
