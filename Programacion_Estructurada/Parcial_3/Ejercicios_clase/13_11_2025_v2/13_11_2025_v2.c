@@ -79,7 +79,7 @@ int main()
 
 void ingresarPersona(datosP *p)
 {
-    getchar(); // limpiar buffer
+    getchar();
     printf("Nombre: ");
     fgets(p->name, 25, stdin);
 
