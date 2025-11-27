@@ -1,4 +1,6 @@
 /*
+25310234 - Mario Bernardo Ponce Barrios
+
 crear una lista de personas, las cuales deben tener como datos personales:
 nombre
 correo
@@ -40,7 +42,7 @@ int main() {
     }
 
     do {
-        printf("1. Mostrar lista completa\n");
+        printf("\n\n1. Mostrar lista completa\n");
         printf("2. Buscar por nombre\n");
         printf("3. Buscar por correo\n");
         printf("4. Buscar por edad\n");
@@ -91,7 +93,7 @@ void ingresarPersona(Persona *p) {
 }
 
 void mostrarLista(Persona *lista, int n) {
-    printf("\n----- LISTA DE PERSONAS -----\n");
+    printf("\n------------------- LISTA DE PERSONAS -------------------\n");
     for (int i = 0; i < n; i++) {
         printf("\nNombre: %s", lista[i].nombre);
         printf("\nCorreo: %s", lista[i].correo);
