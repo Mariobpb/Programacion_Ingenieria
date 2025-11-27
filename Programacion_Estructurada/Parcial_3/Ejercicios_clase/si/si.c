@@ -17,10 +17,12 @@ int main()
 {
 
     int numDatosP;
+    datosP *personas, *leidos;
     printf("Cuántas personas desea ingresar? ");
     scanf("%d", &numDatosP);
 
-    datosP *personas = malloc(numDatosP * sizeof(datosP));
+    personas = malloc(numDatosP * sizeof(datosP));
+    
     if (personas == NULL)
     {
         printf("Error al asignar memoria.\n");
@@ -34,41 +36,37 @@ int main()
         ingresarPersona(&personas[i]);
     }
 
-    FILE *arc = fopen("C:\\Users\\mario\\OneDrive\\Documentos\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\Ejercicios_clase\\si\\archivito.bin", "wb");
+    FILE *arc = fopen("C:\\Users\\mario\\Documents\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\Ejercicios_clase\\si\\archivito.bin", "wb");
     if (!arc)
     {
         printf("Error\n");
         return 1;
     }
-    fwrite(&numDatosP, sizeof(int), 1, arc);
+    printf("NO\n");
     fwrite(personas, sizeof(datosP), numDatosP, arc);
     fclose(arc);
     free(personas);
 
-    arc = fopen("C:\\Users\\mario\\OneDrive\\Documentos\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\Ejercicios_clase\\si\\archivito.bin", "rb");
+    arc = fopen("C:\\Users\\mario\\Documents\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\Ejercicios_clase\\si\\archivito.bin", "rb");
     if (!arc)
     {
         printf("Error\n");
         return 1;
     }
+    printf("NO\n");
 
-    int datosPLeidos;
-    fread(&datosPLeidos, sizeof(int), 1, arc);
-
-    // Arreglo dinámico para lo leído
-    datosP *leidos = malloc(datosPLeidos * sizeof(datosP));
+    leidos = malloc(numDatosP * sizeof(datosP));
     if (leidos == NULL)
     {
         printf("Error al asignar memoria.\n");
         return 1;
     }
-
-    fread(leidos, sizeof(datosP), datosPLeidos, arc);
+    printf("NO\n");
+    fread(leidos, sizeof(datosP), numDatosP, arc);
     fclose(arc);
-
-    // Mostrar datos
+    
     printf("\n\n--- DATOS LEÍDOS DEL ARCHIVO ---\n");
-    for (int i = 0; i < datosPLeidos; i++)
+    for (int i = 0; i < numDatosP; i++)
     {
         mostrarPersona(leidos[i]);
     }
