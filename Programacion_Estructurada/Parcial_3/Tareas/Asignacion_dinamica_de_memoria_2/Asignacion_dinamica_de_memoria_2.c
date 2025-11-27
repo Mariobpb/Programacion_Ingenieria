@@ -1,4 +1,6 @@
 /*
+Mario Bernardo Poncer Barrios - 25310234
+
 en escencia es lo mismo que el  ejercicio "memoria dinamica 1", solo que ahora debe usar 
 
 realloc
@@ -33,9 +35,8 @@ int main() {
     }
     
     printf("\nCadena:\n");
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size - 1; i++) 
         printf("cadena[%d] = %c\n", i, cad[i]);
-    }
     free(cad);
 
     return 0;
