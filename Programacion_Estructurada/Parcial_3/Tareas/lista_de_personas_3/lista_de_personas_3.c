@@ -25,8 +25,8 @@ typedef struct {
 void ingresarPersona(Persona *p);
 void mostrarLista(Persona *lista, int n);
 int buscar(Persona *lista, int n, Persona **resultados);
-void guardarArchivo(char *nombre, Persona *lista, int n);
-Persona* leerArchivo(char *nombre, int *n);
+void guardarArchivoBin(char *nombre, Persona *lista, int n);
+Persona* leerArchivoBin(char *nombre, int *n);
 void mostrarArchivo(char *nombre);
 
 int main() {
@@ -47,10 +47,10 @@ int main() {
         ingresarPersona(&lista[i]);
     }
     
-    guardarArchivo(rutaPersonas, lista, n);
+    guardarArchivoBin(rutaPersonas, lista, n);
     
     int n2 = 0;
-    listaDesdeArchivo = leerArchivo(rutaPersonas, &n2);
+    listaDesdeArchivo = leerArchivoBin(rutaPersonas, &n2);
 
     int opcion;
     do {
@@ -68,8 +68,8 @@ int main() {
 
             if (encontrados > 0) {
                 int nBuscadas = 0;
-                guardarArchivo(rutaPersonasBuscadas, listaBuscada, encontrados);
-                Persona *personasBuscadas = leerArchivo(rutaPersonasBuscadas, &nBuscadas);
+                guardarArchivoBin(rutaPersonasBuscadas, listaBuscada, encontrados);
+                Persona *personasBuscadas = leerArchivoBin(rutaPersonasBuscadas, &nBuscadas);
                 mostrarLista(personasBuscadas, nBuscadas);
                 free(personasBuscadas);
             }
@@ -154,7 +154,7 @@ int buscar(Persona *lista, int n, Persona **resultados) {
     return encontrados;
 }
 
-void guardarArchivo(char *arc, Persona *lista, int n) {
+void guardarArchivoBin(char *arc, Persona *lista, int n) {
     FILE *f = fopen(arc, "wb");
     if (!f) {
         printf("Error al guardar\n");
@@ -165,7 +165,7 @@ void guardarArchivo(char *arc, Persona *lista, int n) {
     fclose(f);
 }
 
-Persona* leerArchivo(char *arc, int *n) {
+Persona* leerArchivoBin(char *arc, int *n) {
     FILE *f = fopen(arc, "rb");
     if (!f) {
         printf("Error al leer dirección: %s\n", arc);
