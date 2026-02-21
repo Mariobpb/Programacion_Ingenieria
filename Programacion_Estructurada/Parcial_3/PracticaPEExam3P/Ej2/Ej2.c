@@ -6,7 +6,7 @@ Ej2
 #include <stdlib.h>
 #include <string.h>
 
-char rutaPersonasBin[] = "C:\\Users\\mario\\OneDrive\\Documentos\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\PracticaPEExam3P\\Ej2\\archivo.bin";
+char rutaPersonasBin[] = "C:\\Users\\mario\\Documents\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\PracticaPEExam3P\\Ej2\\archivo.bin";
 char rutaPersonasTxt[] = "C:\\Users\\mario\\OneDrive\\Documentos\\CETI\\Ingenieria\\Programacion_Ingenieria\\Programacion_Estructurada\\Parcial_3\\PracticaPEExam3P\\Ej2\\archivo.txt";
 
 typedef struct
@@ -21,31 +21,20 @@ void ingresarPersona(Persona *p);
 void mostrarLista(Persona *lista, int n);
 void guardarArchivoBin(char *path, Persona *lista, int n);
 void guardarArchivoTxt(char *path, Persona *lista, int n);
-Persona *leerArchivoBin(char *path, int *n);
+void leerArchivoBin(Persona** lista, char *path, int *n);
 Persona *leerArchivoTxt(char *path, int *n);
-int numPersonasArchivo(char *path);
+int numPersonasArchivo(FILE *f);
 void mostrarArchivo(char *path);
 
 int main()
 {
-    int n = 0;
+    int personListSize = 0;
     Persona *lista;
+    lista = malloc(0);
+    leerArchivoBin(&lista, rutaPersonasBin, &personListSize);
+    printf("\n\nPersonas: %d\n\n", personListSize);
 
-    printf("Cantidad de personas: ");
-    scanf("%d", &n);
-    getchar();
-
-    lista = malloc(n * sizeof(Persona));
-
-    for (int i = 0; i < n; i++)
-    {
-        printf("\nPersona #%d\n", i + 1);
-        ingresarPersona(&lista[i]);
-    }
-
-    guardarArchivoBin(rutaPersonasBin, lista, n);
-
-    int opcion;
+    int opcion = -1;
     do
     {
         printf("\n\n1. Mostrar lista completa (desde archivo)");
@@ -58,10 +47,13 @@ int main()
         switch (opcion)
         {
         case 1:
-            mostrarLista(lista, n);
+            mostrarLista(lista, personListSize);
             break;
         case 2:
-            /* code */
+            personListSize++;
+            lista = realloc(lista, sizeof(Persona)*personListSize);
+            ingresarPersona(&lista[personListSize-1]);
+            guardarArchivoBin(rutaPersonasBin, lista, personListSize);
             break;
         default:
             break;
@@ -69,7 +61,6 @@ int main()
     } while (opcion != 0);
 
     free(lista);
-    free(listaDesdeArchivo);
 
     return 0;
 }
@@ -117,16 +108,22 @@ void guardarArchivoBin(char *path, Persona *lista, int n)
     fclose(f);
 }
 
-Persona *leerArchivoBin(char *path, int *n)
+void leerArchivoBin(Persona** lista, char *path, int *n)
 {
     FILE *f = fopen(path, "rb");
     if (!f)
     {
         printf("Error al leer dirección: %s\n", path);
-        return NULL;
+        return;
     }
-    Persona *lista = malloc((*n) * sizeof(Persona));
+    *n = numPersonasArchivo(f);
+    printf("\n\nPersonas: %d\n\n", *n);
+    lista = realloc(lista ,(*n) * sizeof(Persona));
     fread(lista, sizeof(Persona), *n, f);
     fclose(f);
-    return lista;
+}
+int numPersonasArchivo(FILE *f){
+    fseek(f, 0, SEEK_END);
+    return ftell(f)/sizeof(Persona);
+    rewind(f);
 }
