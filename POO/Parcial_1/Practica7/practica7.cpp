@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class NumerosComparados
+class NumeroCentral
 {
 private:
     int numero1;
@@ -19,31 +19,31 @@ public:
     void obtenerNumeroCentral();
 };
 
-int NumerosComparados::getNumero1()
+int NumeroCentral::getNumero1()
 {
     return this->numero1;
 }
-void NumerosComparados::setNumero1(int numero1)
+void NumeroCentral::setNumero1(int numero1)
 {
     this->numero1 = numero1;
 }
-int NumerosComparados::getNumero2()
+int NumeroCentral::getNumero2()
 {
     return this->numero2;
 }
-void NumerosComparados::setNumero2(int numero2)
+void NumeroCentral::setNumero2(int numero2)
 {
     this->numero2 = numero2;
 }
-int NumerosComparados::getNumero3()
+int NumeroCentral::getNumero3()
 {
     return this->numero3;
 }
-void NumerosComparados::setNumero3(int numero3)
+void NumeroCentral::setNumero3(int numero3)
 {
     this->numero3 = numero3;
 }
-void NumerosComparados::leerNumeros()
+void NumeroCentral::leerNumeros()
 {
     int num1, num2, num3;
     cout << "Ingresa el numero 1:  ";
@@ -56,20 +56,20 @@ void NumerosComparados::leerNumeros()
     cin >> num3;
     setNumero3(num3);
 }
-void NumerosComparados::obtenerNumeroCentral()
+void NumeroCentral::obtenerNumeroCentral()
 {
     cout << "El numero central es: ";
     if (getNumero1() < getNumero2() && getNumero2() < getNumero3())
         cout << getNumero2();
-    else if (getNumero2() < getNumero1() && getNumero1() != getNumero3())
-        cout << "Los tres numeros son diferentes";
+    else if (getNumero2() < getNumero1() && getNumero1() < getNumero3())
+        cout << getNumero1();
     else
-        cout << "Hay dos numeros iguales y uno diferente";
+        cout << getNumero3();
 }
 
 int main()
 {
-    NumerosComparados nc;
+    NumeroCentral nc;
     nc.leerNumeros();
     nc.obtenerNumeroCentral();
     return 0;
