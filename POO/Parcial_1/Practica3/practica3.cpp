@@ -60,7 +60,7 @@ void NumerosComparados::evaluarNumeros()
 {
     if (getNumero1() == getNumero2() && getNumero1() == getNumero3())
         cout << "Los tres numeros son iguales";
-    else if (getNumero1() != getNumero2() && getNumero1() != getNumero3())
+    else if (getNumero1() != getNumero2() && getNumero1() != getNumero3() && getNumero2() != getNumero3())
         cout << "Los tres numeros son diferentes";
     else
         cout << "Hay dos numeros iguales y uno diferente";

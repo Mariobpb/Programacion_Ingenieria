@@ -59,9 +59,9 @@ void NumeroCentral::leerNumeros()
 void NumeroCentral::obtenerNumeroCentral()
 {
     cout << "El numero central es: ";
-    if (getNumero1() < getNumero2() && getNumero2() < getNumero3())
+    if ((getNumero1() < getNumero2() && getNumero2() < getNumero3())||(getNumero3() < getNumero2() && getNumero2() < getNumero1()))
         cout << getNumero2();
-    else if (getNumero2() < getNumero1() && getNumero1() < getNumero3())
+    else if ((getNumero2() < getNumero1() && getNumero1() < getNumero3())||(getNumero3() < getNumero1() && getNumero1() < getNumero2()))
         cout << getNumero1();
     else
         cout << getNumero3();
