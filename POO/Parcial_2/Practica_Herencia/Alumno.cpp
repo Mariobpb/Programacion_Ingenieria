@@ -1,8 +1,3 @@
-#ifndef ALUMNO_H
-#define ALUMNO_H
-
-#include <string>
-#include "../Persona/Persona.h"
 
 using namespace std;
 
@@ -21,4 +16,23 @@ class Alumno : public Persona {
         void imprimir_valores();
         void obtener_promedio();
 };
-#endif
+
+void Alumno::leerValores() {
+    
+}
+
+void Alumno::calcular_promedio() {
+    
+}
+
+void Alumno::cambiar_estatus(string nuevoEstatus) {
+    
+}
+
+void Alumno::imprimir_valores() {
+    
+}
+
+void Alumno::obtener_promedio() {
+    
+}

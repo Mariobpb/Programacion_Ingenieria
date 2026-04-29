@@ -1,7 +1,12 @@
-#include "Director.h"
-#include <iostream>
-
 using namespace std;
+
+class Director : public Persona {
+    public:
+        void leer_valores();
+        void imprimir_valores();
+        void eliminar_alumno(Alumno);
+        void eliminar_docente(Docente);
+};
 
 void Director::leer_valores() {
     

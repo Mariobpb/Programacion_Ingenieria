@@ -1,8 +1,3 @@
-#ifndef DOCENTE_H
-#define DOCENTE_H
-
-#include "../Persona/Persona.h"
-
 using namespace std;
 
 class Docente : public Persona {
@@ -18,4 +13,23 @@ class Docente : public Persona {
         float obtener_salario();
         void cambiar_estatus();
 };
-#endif
+
+void Docente::leer_valores() {
+    
+}
+
+void Docente::imprimir_valores() {
+    
+}
+
+void Docente::calcular_salario() {
+    
+}
+
+float Docente::obtener_salario() {
+    return 0;
+}
+
+void Docente::cambiar_estatus() {
+    
+}

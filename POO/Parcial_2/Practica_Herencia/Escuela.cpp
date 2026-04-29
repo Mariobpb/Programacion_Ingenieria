@@ -1,7 +1,17 @@
-#include "Escuela.h"
-#include <iostream>
-
 using namespace std;
+
+class Escuela{
+    private:
+        Alumno objAlumno;
+        Docente objDocente;
+        Director objDirector;
+
+    public:
+        void menu_alumno();
+        void menu_docente();
+        void menu_director();
+        void menu_principal();
+};
 
 void Escuela::menu_principal()
 {
