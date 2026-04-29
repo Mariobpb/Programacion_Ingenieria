@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -6,18 +7,18 @@ class Fecha
 private:
     int dia;
     int mes;
-    int año;
+    int anio;
 
 public:
     Fecha();
-    Fecha(int dia, int mes, int año);
+    Fecha(int dia, int mes, int anio);
 
     int getDia();
     void setDia(int dia);
     int getMes();
     void setMes(int mes);
-    int getAño();
-    void setAño(int año);
+    int getAnio();
+    void setAnio(int anio);
 
     void leerFecha();
     int validarFecha();
@@ -29,31 +30,158 @@ Fecha::Fecha()
 {
     this->dia = 1;
     this->mes = 1;
-    this->año = 1;
+    this->anio = 1;
 }
-Fecha::Fecha(int dia, int mes, int año)
+Fecha::Fecha(int dia, int mes, int anio)
 {
-    if (dia > 0 && dia < 32)
+    if (dia >= 1 && dia <= 31)
         this->dia = dia;
     else
         this->dia = 1;
-    if (mes > 0 && mes < 13)
+    if (mes >= 1 && mes <= 12)
         this->mes = mes;
     else
         this->mes = 1;
-    if (año >= 0)
-        this->año = año;
+    if (anio >= 0)
+        this->anio = anio;
     else
-        this->año = 1;
+        this->anio = 1;
 }
-int getDia();
-void setDia(int dia);
-int getMes();
-void setMes(int mes);
-int getAño();
-void setAño(int año);
+int Fecha::getDia()
+{
+    return this->dia;
+}
+void Fecha::setDia(int dia)
+{
+    this->dia = dia;
+}
+int Fecha::getMes()
+{
+    return this->mes;
+}
+void Fecha::setMes(int mes)
+{
+    this->mes = mes;
+}
+int Fecha::getAnio()
+{
+    return this->anio;
+}
+void Fecha::setAnio(int anio)
+{
+    this->anio = anio;
+}
 
-void leerFecha();
-int validarFecha();
-void imprimirFechaCorta();
-void imprimirFechaLarga();
+void Fecha::leerFecha()
+{
+    int dia, mes, anio;
+    do
+    {
+        cout << "Ingrese los siguientes datos:\nDia: ";
+        cin >> dia;
+        setDia(dia);
+        cout << "Mes: ";
+        cin >> mes;
+        setMes(mes);
+        cout << "Anio: ";
+        cin >> anio;
+        setAnio(anio);
+        if(!validarFecha())
+            cout << "Debe ingresar una fecha valida" << endl;
+    } while (!validarFecha());
+}
+int Fecha::validarFecha()
+{
+    int esBisiesto = 0;
+    int diaLimite = 0;
+
+    if (getAnio() < 1)
+        return 0;
+    if (getMes() < 1 || getMes() > 12)
+        return 0;
+
+    if (getAnio() % 4 == 0)
+    {
+        if (getAnio() % 100 != 0)
+            esBisiesto = 1;
+        else if (getAnio() % 400 == 0)
+            esBisiesto = 1;
+    }
+
+    switch (getMes())
+    {
+    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        diaLimite = 31;
+        break;
+    case 4: case 6: case 9: case 11:
+        diaLimite = 30;
+        break;
+    case 2:
+        if (esBisiesto)
+            diaLimite = 29;
+        else
+            diaLimite = 28;
+        break;
+    }
+
+    if (getDia() < 1 || getDia() > diaLimite)
+        return 0;
+    return 1;
+}
+void Fecha::imprimirFechaCorta()
+{
+    cout << "Fecha ingresada (corta):\t" << getDia() << " / " << getMes() << " / " << getAnio();
+}
+void Fecha::imprimirFechaLarga()
+{
+    string mesStr = "";
+    switch (getMes())
+    {
+    case 1:
+        mesStr = "Enero";
+        break;
+        case 2:
+        mesStr = "Febrero";
+        break;
+        case 3:
+        mesStr = "Marzo";
+        break;
+        case 4:
+        mesStr = "Abril";
+        break;
+        case 5:
+        mesStr = "Mayo";
+        break;
+        case 6:
+        mesStr = "Junio";
+        break;
+        case 7:
+        mesStr = "Julio";
+        break;
+        case 8:
+        mesStr = "Agosto";
+        break;
+        case 9:
+        mesStr = "Septiembre";
+        break;
+        case 10:
+        mesStr = "Octubre";
+        break;
+        case 11:
+        mesStr = "Noviembre";
+        break;
+        case 12:
+        mesStr = "Diciembre";
+        break;
+    }
+    cout << "Fecha ingresada (larga):\t" << getDia() << " de " << mesStr << " de " << getAnio();
+}
+
+
+int main()
+{
+    Fecha objFecha1;
+    objFecha1.leerFecha();
+    objFecha1.imprimirFechaCorta();
+    objFecha1.imprimirFechaLarga();
+}
