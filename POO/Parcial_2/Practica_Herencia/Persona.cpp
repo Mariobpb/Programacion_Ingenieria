@@ -8,6 +8,8 @@ class Persona {
         string estatus;
 
     public:
+        Persona();
+        Persona(string, int, string);
         string getNombre();
         int getEdad();
         string getCarrera();
@@ -19,34 +21,23 @@ class Persona {
         void setEstatus(string);
 };
 
-string Persona::getNombre() {
-    return nombre;
+Persona::Persona(){
+    this->estatus = "ACTIVO";
 }
 
-int Persona::getEdad() {
-    return edad;
-}
-
-string Persona::getCarrera() {
-    return carrera;
-}
-
-string Persona::getEstatus() {
-    return estatus;
-}
-
-void Persona::setNombre(string nombre) {
+Persona::Persona(string nombre, int edad, string carrera){
     this->nombre = nombre;
-}
-
-void Persona::setEdad(int edad) {
     this->edad = edad;
-}
-
-void Persona::setCarrera(string carrera) {
     this->carrera = carrera;
+    this->estatus = "ACTIVO";
 }
 
-void Persona::setEstatus(string estatus) {
-    this->estatus = estatus;
-}
+string Persona::getNombre() { return this->nombre; }
+int Persona::getEdad() { return this->edad; }
+string Persona::getCarrera() { return this->carrera; }
+string Persona::getEstatus() { return this->estatus; }
+
+void Persona::setNombre(string nombre) { this->nombre = nombre; }
+void Persona::setEdad(int edad) { this->edad = edad; }
+void Persona::setCarrera(string carrera) { this->carrera = carrera; }
+void Persona::setEstatus(string estatus) { this->estatus = estatus; }
