@@ -1,7 +1,5 @@
 using namespace std;
-#include <string>
-#include <iostream>
-#include "Publicacion.cpp"
+
 
 class AudioLibro : public Publicacion
 {
@@ -25,11 +23,11 @@ public:
 AudioLibro::AudioLibro()
 {
     this->minutos = 0;
-    this->presentacion = "PRESENTACIÓN NO ASIGNADA";
+    this->presentacion = "PRESENTACION NO ASIGNADA";
 }
 AudioLibro::AudioLibro(string titulo, string autor, double precio, int minutos, string presentacion) : Publicacion(titulo, autor, precio)
 {
-    this->presentacion = "PRESENTACIÓN NO ASIGNADA";
+    this->presentacion = "PRESENTACION NO ASIGNADA";
 }
 
 int AudioLibro::getMinutos()
@@ -55,6 +53,6 @@ void AudioLibro::setPresentacion(string presentacion)
 
 string AudioLibro::mostrarInformacion()
 {
-    return "----- AUDIO LIBRO -----\nTítulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio()) 
-    + "\nDuración: " + to_string(getMinutos()) + " minutos\nPresentación: " + getPresentacion();
+    return "\n----- AUDIO LIBRO -----\nTitulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio()) 
+    + "\nDuracion: " + to_string(getMinutos()) + " minutos\nPresentacion: " + getPresentacion() + "\n";
 }

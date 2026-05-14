@@ -1,7 +1,4 @@
 using namespace std;
-#include <string>
-#include <iostream>
-#include "Publicacion.cpp"
 
 class Libro : public Publicacion
 {
@@ -49,6 +46,6 @@ void Libro::setPasta(string pasta)
 
 string Libro::mostrarInformacion()
 {
-    return "----- LIBRO -----\nTítulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio()) 
-    + "\nNumero de páginas: " + to_string(getNumPaginas()) + "\nTipo de pasta: " + getPasta();
+    return "\n----- LIBRO -----\nTitulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio()) 
+    + "\nNumero de paginas: " + to_string(getNumPaginas()) + "\nTipo de pasta: " + getPasta() + "\n";
 }

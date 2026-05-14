@@ -1,6 +1,4 @@
 using namespace std;
-#include <string>
-#include <iostream>
 
 class Publicacion
 {
@@ -26,7 +24,7 @@ public:
 
 Publicacion::Publicacion()
 {
-    this->titulo = "SIN TÍTULO";
+    this->titulo = "SIN TITULO";
     this->autor = "SIN AUTOR";
     this->precio = 0;
 }
@@ -47,5 +45,5 @@ void Publicacion::setPrecio(double precio) { this->precio = precio; }
 
 string Publicacion::mostrarInformacion()
 {
-    return "\nTítulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio());
+    return "\nTitulo: " + getTitulo() + "\nAutor: " + getAutor() + "\nPrecio: $" + to_string(getPrecio());
 }
