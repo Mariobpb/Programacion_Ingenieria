@@ -35,7 +35,7 @@ float Pentagono::getApotema()
 }
 void Pentagono::calcular_apotema(){
     float theta = 360/(2*5);
-    float radianes = theta*(3.1416/180);w
+    float radianes = theta*(3.1416/180);
     setApotema(getLado()/(2*tan(radianes)));
 }
 void Pentagono::calcular_area()
