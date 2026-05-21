@@ -27,6 +27,7 @@ AudioLibro::AudioLibro()
 }
 AudioLibro::AudioLibro(string titulo, string autor, double precio, int minutos, string presentacion) : Publicacion(titulo, autor, precio)
 {
+    this->minutos = minutos;
     this->presentacion = "PRESENTACION NO ASIGNADA";
 }
 

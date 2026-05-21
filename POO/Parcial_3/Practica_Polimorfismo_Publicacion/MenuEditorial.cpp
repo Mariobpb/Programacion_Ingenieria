@@ -76,13 +76,16 @@ void MenuEditorial::menuPrincipal()
                 objPublicacion = &objAudio;
                 break;
             default:
-                objPublicacion = NULL;
+                objPublicacion = nullptr;
                 break;
             }
-            cout << "Ingrese la cantidad a comprar:\t";
-            cin >> cantidad;
-            cout << "\n========= Informacion del producto a comprar =========\n"
-                 << objPublicacion->mostrarInformacion() << "\nTotal a pagar:\t" << objPublicacion->getPrecio() * cantidad;
+            if (objPublicacion != nullptr)
+            {
+                cout << "Ingrese la cantidad a comprar:\t";
+                cin >> cantidad;
+                cout << "\n========= Informacion del producto a comprar =========\n"
+                     << objPublicacion->mostrarInformacion() << "\nTotal a pagar:\t" << objPublicacion->getPrecio() * cantidad;
+            }
             break;
         case 4:
             objPublicacion = &objLibro;
