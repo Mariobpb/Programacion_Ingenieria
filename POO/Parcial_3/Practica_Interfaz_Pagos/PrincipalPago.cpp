@@ -16,7 +16,7 @@ int main()
         new PagoTarjetaCredito(),
         new PagoPayPal(),
         new PagoCriptoMoneda()};
-    double monto = 100.00;
+    double monto = -100.00;
     for (Pago *metodo : metodosPago)
     {
         cout << "Metodo: " << metodo->obtenerMetodoPago() << endl;
