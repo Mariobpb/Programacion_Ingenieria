@@ -91,12 +91,12 @@ void Empleado::agregarComision(double monto)
 
 void Empleado::mostrarInfo()
 {
-    impColor(string("\n\tID:    ") + to_string(getEmpleadoID()), VERDE);
-    impColor(string("\n\tNombre:    ") + getNombre(), VERDE);
-    impColor(string("\n\tDomicilio:    ") + getDomicilio(), VERDE);
-    impColor(string("\n\tTelefono:    ") + to_string(getTelefono()), VERDE);
-    impColor(string("\n\tRFC:    ") + getRFC(), VERDE);
+    impColor(string("\n\tID:               ") + to_string(getEmpleadoID()), VERDE);
+    impColor(string("\n\tNombre:           ") + getNombre(), VERDE);
+    impColor(string("\n\tDomicilio:        ") + getDomicilio(), VERDE);
+    impColor(string("\n\tTelefono:         ") + to_string(getTelefono()), VERDE);
+    impColor(string("\n\tRFC:              ") + getRFC(), VERDE);
     impColor(string("\n\tSalario Base:    $") + to_string(getSalarioBase()), VERDE);
-    impColor(string("\n\tComisiones:    $") + to_string(getComision()), VERDE);
-    impColor(string("\n\tSalario Total:    $") + to_string(calcularSalario()), VERDE);
+    impColor(string("\n\tComisiones:      $") + to_string(getComision()), VERDE);
+    impColor(string("\n\tSalario Total:   $") + to_string(calcularSalario()), VERDE);
 }

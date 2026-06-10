@@ -16,7 +16,7 @@ using namespace std;
 
 void limpiarPantalla()
 {
-    cout << LIMPIAR << AMARILLO << "\n\n================================= ENTRETENIMIENTO FELIZ =================================\n\n"
+    cout << LIMPIAR << AMARILLO << "\n\n================================================ ENTRETENIMIENTO FELIZ ================================================\n\n"
          << RESET;
 }
 void impColor(string texto, string color)

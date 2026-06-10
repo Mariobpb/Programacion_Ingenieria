@@ -104,11 +104,11 @@ Transaccion::~Transaccion() {}
 
 void Transaccion::mostrarInfo()
 {
-    impColor("\n\t========== DETALLE DE TRANSACCIÓN ==========", CIAN);
+    impColor("\n\t========== DETALLE DE TRANSACCION ==========", BLANCO);
     impColor("\n\tFolio:          " + to_string(getNumFolio()), BLANCO);
     impColor("\n\tID Cliente:     " + to_string(getClienteID()), BLANCO);
     impColor("\n\tID Empleado:    " + to_string(getEmpleadoID()), BLANCO);
     impColor("\n\tID Producto:    " + to_string(getProductoID()), BLANCO);
     impColor("\n\tTipo:           " + string(getModoTransaccion() == Renta ? "Renta" : "Venta"), BLANCO);
-    impColor("\n\t--------------------------------------------", CIAN);
+    impColor("\n\t============================================\n\n", BLANCO);
 }

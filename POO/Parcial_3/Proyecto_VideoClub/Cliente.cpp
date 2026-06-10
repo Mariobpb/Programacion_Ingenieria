@@ -70,11 +70,11 @@ void Cliente::setVideojuegosRentados(int videojuegosRentados){
 }
 
 void Cliente::mostrarInfo(){
-    impColor(string("\n\tID:   ")+to_string(getClienteID()), VERDE);
-    impColor(string("\n\tNombre:   ")+getNombre(), VERDE);
-    impColor(string("\n\tDomicilio:   ")+getDomicilio(), VERDE);
-    impColor(string("\n\tTelefono:   ")+to_string(getTelefono()), VERDE);
-    impColor(string("\n\tRFC:   ")+getRFC(), VERDE);
-    impColor(string("\n\tPeliculas Rentadas:   ")+to_string(getPelisRentadas()), VERDE);
+    impColor(string("\n\tID:                     ")+to_string(getClienteID()), VERDE);
+    impColor(string("\n\tNombre:                 ")+getNombre(), VERDE);
+    impColor(string("\n\tDomicilio:              ")+getDomicilio(), VERDE);
+    impColor(string("\n\tTelefono:               ")+to_string(getTelefono()), VERDE);
+    impColor(string("\n\tRFC:                    ")+getRFC(), VERDE);
+    impColor(string("\n\tPeliculas Rentadas:     ")+to_string(getPelisRentadas()), VERDE);
     impColor(string("\n\tVideojuegos Rentados:   ")+to_string(getVideojuegosRentados()), VERDE);
 }

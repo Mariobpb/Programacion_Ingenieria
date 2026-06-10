@@ -13,7 +13,7 @@ private:
 
 public:
     Pelicula();
-    Pelicula(int numCopia, string nombre, string genero, double precioVenta, double precioRenta, string director);
+    Pelicula(string nombre, string genero, double precioVenta, double precioRenta, string director);
     ~Pelicula();
 
     string getDirector();
@@ -27,8 +27,8 @@ Pelicula::Pelicula() : Producto()
     this->director = "SIN ASIGNAR";
 }
 
-Pelicula::Pelicula(int numCopia, string nombre, string genero, double precioVenta, double precioRenta, string director)
-    : Producto(numCopia, nombre, genero, precioVenta, precioRenta)
+Pelicula::Pelicula(string nombre, string genero, double precioVenta, double precioRenta, string director)
+    : Producto(nombre, genero, precioVenta, precioRenta)
 {
     this->director = director;
 }
@@ -48,12 +48,12 @@ void Pelicula::setDirector(string director)
 
 void Pelicula::mostrarInfo()
 {
-    impColor("\n\tID del producto (Pelicula): " + to_string(ID), VERDE);
-    impColor("\n\tNombre:                " + nombre, VERDE);
-    impColor("\n\tDirector:              " + director, VERDE);
-    impColor("\n\tGenero:                " + genero, VERDE);
-    impColor("\n\tNumero de Copias:      " + to_string(numCopia), VERDE);
-    impColor("\n\tPrecio Venta:          $" + to_string(precioVenta), VERDE);
-    impColor("\n\tPrecio Renta:          $" + to_string(precioRenta), VERDE);
-    impColor("\n\tEstatus Actual:        " + getEstadoString(), VERDE);
+    impColor("\n\tID del producto (Pelicula):   " + to_string(ID), VERDE);
+    impColor("\n\tNombre:                       " + nombre, VERDE);
+    impColor("\n\tDirector:                     " + director, VERDE);
+    impColor("\n\tGenero:                       " + genero, VERDE);
+    impColor("\n\tNumero de Copias:             " + to_string(numCopia), VERDE);
+    impColor("\n\tPrecio Venta:                 $" + to_string(precioVenta), VERDE);
+    impColor("\n\tPrecio Renta:                 $" + to_string(precioRenta), VERDE);
+    impColor("\n\tEstatus Actual:               " + getEstadoString(), VERDE);
 }

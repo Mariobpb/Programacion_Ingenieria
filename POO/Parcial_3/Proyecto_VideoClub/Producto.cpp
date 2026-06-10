@@ -18,7 +18,9 @@ class Producto : public Mostrable
 {
 protected:
     int ID;
-    int numCopia;
+    int numCopia; 
+    int rentadas; 
+    int vendidas; 
     string nombre;
     string genero;
     double precioVenta;
@@ -30,7 +32,7 @@ private:
 
 public:
     Producto();
-    Producto(int numCopia, string nombre, string genero, double precioVenta, double precioRenta);
+    Producto(string nombre, string genero, double precioVenta, double precioRenta);
     virtual ~Producto();
 
     int getID();
@@ -38,6 +40,12 @@ public:
 
     int getNumCopia();
     void setNumCopia(int);
+
+    int getRentadas();
+    void setRentadas(int);
+
+    int getVendidas();
+    void setVendidas(int);
 
     string getNombre();
     void setNombre(string);
@@ -62,26 +70,28 @@ int Producto::contadorProductos = 0;
 
 Producto::Producto()
 {
-    Producto::contadorProductos++;
-    this->ID = Producto::contadorProductos;
+    this->ID = ++Producto::contadorProductos;
     this->numCopia = 0;
     this->nombre = "SIN ASIGNAR";
     this->genero = "SIN ASIGNAR";
     this->precioVenta = 0.0;
     this->precioRenta = 0.0;
     this->estado = Disponible;
+    this->rentadas = 0; 
+    this->vendidas = 0; 
 }
 
-Producto::Producto(int numCopia, string nombre, string genero, double precioVenta, double precioRenta)
+Producto::Producto(string nombre, string genero, double precioVenta, double precioRenta)
 {
-    Producto::contadorProductos++;
-    this->ID = Producto::contadorProductos;
-    this->numCopia = numCopia;
+    this->ID = ++Producto::contadorProductos;
+    this->numCopia = 5;
     this->nombre = nombre;
     this->genero = genero;
     this->precioVenta = precioVenta;
     this->precioRenta = precioRenta;
     this->estado = Disponible;
+    this->rentadas = 0; 
+    this->vendidas = 0; 
 }
 
 Producto::~Producto() {}
@@ -102,6 +112,24 @@ int Producto::getNumCopia()
 void Producto::setNumCopia(int numCopia)
 {
     this->numCopia = numCopia;
+}
+
+int Producto::getRentadas()
+{
+    return this->rentadas;
+}
+void Producto::setRentadas(int rentadas)
+{
+    this->rentadas = rentadas;
+}
+
+int Producto::getVendidas()
+{
+    return this->vendidas;
+}
+void Producto::setVendidas(int vendidas)
+{
+    this->vendidas = vendidas;
 }
 
 string Producto::getNombre()
