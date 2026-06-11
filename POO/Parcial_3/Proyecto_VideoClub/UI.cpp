@@ -25,7 +25,7 @@ void impColor(string texto, string color)
 }
 void esperarEnter()
 {
-    impColor("\n\n\nPresione ENTER para continuar...", BLANCO);
+    impColor("\n\n\nPresione ENTER para continuar...  ", BLANCO);
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }

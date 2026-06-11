@@ -18,7 +18,7 @@ protected:
 public:
     Persona();
     Persona(string nombre, string domicilio, int telefono, string RFC);
-    virtual ~Persona();
+    ~Persona();
 
     string getNombre();
     void setNombre(string);

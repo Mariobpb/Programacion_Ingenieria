@@ -30,7 +30,7 @@ public:
     void menuPeliculaVideojuego();
     void menuCliente();
     void menuEmpleado();
-    void menuVentaRenta(); 
+    void menuVentaRenta();
     void procesarRentaVenta();
     void devolverProducto();
 };
@@ -45,14 +45,14 @@ bool Menu::validarContrasena()
 
     if (contrasenaIngresada == contrasena)
     {
-        impColor("\nContrasena correcta. Accediendo al sistema...\n", VERDE);
+        impColor("\n\n\nContrasena correcta. Accediendo al sistema...\n", VERDE);
         esperarEnter();
-        return true; 
+        return true;
     }
 
-    impColor("\nContrasena incorrecta. Acceso denegado.\n", ROJO);
+    impColor("\n\n\nContrasena incorrecta. Acceso denegado.\n", ROJO);
     esperarEnter();
-    return false; 
+    return false;
 }
 
 void Menu::menuPrincipal()
@@ -82,7 +82,7 @@ void Menu::menuPrincipal()
             menuEmpleado();
             break;
         case 4:
-            menuVentaRenta(); 
+            menuVentaRenta();
             break;
         case 5:
             impColor("\nSaliendo del sistema...\n", VERDE);
@@ -116,7 +116,7 @@ void Menu::menuPeliculaVideojuego()
         {
             limpiarPantalla();
             impColor("\n============== REGISTRAR NUEVO PRODUCTO ==============\n", VERDE);
-            impColor("\n¿Que desea registrar?", VERDE);
+            impColor("\nQue desea registrar?", VERDE);
             impColor("\n1. Pelicula", VERDE);
             impColor("\n2. Videojuego", VERDE);
             impColor("\n\nSeleccione una opcion: ", AMARILLO);
@@ -173,8 +173,7 @@ void Menu::menuPeliculaVideojuego()
                 {
                     p->mostrarInfo();
 
-                    
-                    impColor("\n\tCopias Disponibles:    " + to_string(p->getNumCopia()), VERDE);
+                    impColor("\n\tCopias Disponibles:  '  " + to_string(p->getNumCopia()), VERDE);
                     impColor("\n\tCopias Rentadas:       " + to_string(p->getRentadas()), VERDE);
                     impColor("\n\tCopias Vendidas:       " + to_string(p->getVendidas()), VERDE);
 
@@ -299,22 +298,18 @@ void Menu::menuPeliculaVideojuego()
                         estatusBuscado = Vendida;
                     }
                     else
-                    {
                         tituloReporte = "COMPLETO DE INVENTARIO";
-                    }
 
                     impColor("\n============== REPORTE DE PRODUCTOS " + tituloReporte + " ==============\n", VERDE);
 
                     if (productos.empty())
-                    {
                         impColor("\nSin productos registrados en el sistema.\n", ROJO);
-                    }
                     else
                     {
                         bool hayCoincidencias = false;
                         for (Producto *p : productos)
                         {
-                            
+
                             if (opReporte == 4 || p->getEstado() == estatusBuscado)
                             {
                                 p->mostrarInfo();
@@ -323,9 +318,7 @@ void Menu::menuPeliculaVideojuego()
                             }
                         }
                         if (!hayCoincidencias)
-                        {
                             impColor("\nNo se encontraron productos con el estatus de este reporte.\n", ROJO);
-                        }
                     }
                     esperarEnter();
                 }
@@ -599,13 +592,13 @@ void Menu::menuVentaRenta()
         switch (opcion)
         {
         case 1:
-            procesarRentaVenta(); 
+            procesarRentaVenta();
             break;
         case 2:
-            devolverProducto(); 
+            devolverProducto();
             break;
         case 3:
-            break; 
+            break;
         default:
             impColor("\nOpcion no valida.\n", ROJO);
             esperarEnter();
@@ -636,7 +629,6 @@ void Menu::procesarRentaVenta()
         return;
     }
 
-    
     impColor("Ingrese el codigo del Empleado: ", AMARILLO);
     int empID = leerInt();
     Empleado *empleadoActivo = nullptr;
@@ -656,7 +648,6 @@ void Menu::procesarRentaVenta()
         return;
     }
 
-    
     impColor("Ingrese el codigo del Cliente: ", AMARILLO);
     int cliID = leerInt();
     Cliente *clienteActivo = nullptr;
@@ -699,51 +690,54 @@ void Menu::procesarRentaVenta()
         }
 
         if (productoSeleccionado == nullptr)
-        {
             impColor("\nEl codigo de producto no existe en el inventario.\n", ROJO);
-        }
-        
+
         else if (productoSeleccionado->getEstado() == Vendida)
-        {
             impColor("\nLo sentimos, este producto ya fue vendido permanentemente.\n", ROJO);
-        }
+
         else if (productoSeleccionado->getNumCopia() <= 0)
-        {
             impColor("\nLo sentimos, no quedan copias disponibles de este titulo.\n", ROJO);
-        }
+
         else
         {
-            impColor("\n¿Que operacion desea realizar?", VERDE);
+            impColor("\nQue operacion desea realizar?", VERDE);
             impColor("\n1. Renta", VERDE);
             impColor("\n2. Venta", VERDE);
             impColor("\n\nSeleccione una opcion: ", AMARILLO);
             int tipoOperacion = leerInt();
 
             if (tipoOperacion != 1 && tipoOperacion != 2)
-            {
                 impColor("\nOpciOn de transacciOn invalida.\n", ROJO);
-            }
             else
             {
                 Modo modoActual = (tipoOperacion == 1) ? Renta : Venta;
                 double costoItem = (modoActual == Renta) ? productoSeleccionado->getPrecioRenta() : productoSeleccionado->getPrecioVenta();
                 bool esPelicula = (dynamic_cast<Pelicula *>(productoSeleccionado) != nullptr);
 
-                
-                
                 if (modoActual == Renta)
                 {
-                    int rentasActivasMismoTipo = esPelicula ? clienteActivo->getPelisRentadas() : clienteActivo->getVideojuegosRentados();
+                    Pelicula *peli = dynamic_cast<Pelicula *>(productoSeleccionado);
+                    Videojuego *juego = dynamic_cast<Videojuego *>(productoSeleccionado);
 
-                    if (rentasActivasMismoTipo >= 2)
+                    if (peli)
                     {
-                        impColor("\nError: El cliente ya tiene 2 " + string(esPelicula ? "peliculas" : "videojuegos") + " rentados activamente.\n", ROJO);
-                        esperarEnter();
-                        continue;
+                        if (!clienteActivo->verificarLimite(peli))
+                        {
+                            impColor("\nError: El cliente ya tiene 2 peliculas rentadas activamente.\n", ROJO);
+                            esperarEnter();
+                            continue;
+                        }
+                    }
+                    else if (juego)
+                    {
+                        if (!clienteActivo->verificarLimite(juego))
+                        {
+                            impColor("\nError: El cliente ya tiene 2 videojuegos rentados activamente.\n", ROJO);
+                            esperarEnter();
+                            continue;
+                        }
                     }
 
-                    
-                    
                     int maxRentasPermitidasDelTitulo = 5 - productoSeleccionado->getVendidas();
                     if (productoSeleccionado->getRentadas() >= maxRentasPermitidasDelTitulo)
                     {
@@ -751,95 +745,68 @@ void Menu::procesarRentaVenta()
                         esperarEnter();
                         continue;
                     }
-                    
                 }
 
-                
                 impColor("\nCosto calculado: $" + to_string(costoItem), CIAN);
-                impColor("\n¿Aceptar y confirmar movimiento? (1 = Si, 2 = No): ", AMARILLO);
+                impColor("\nAceptar y confirmar movimiento? (1 = Si, 2 = No): ", AMARILLO);
                 int confirmar = leerInt();
 
                 if (confirmar == 1)
                 {
 
-                    
                     if (modoActual == Venta)
                     {
-                        
+
                         productoSeleccionado->setNumCopia(productoSeleccionado->getNumCopia() - 1);
                         productoSeleccionado->setVendidas(productoSeleccionado->getVendidas() + 1);
 
-                        
                         if (productoSeleccionado->getNumCopia() == 0)
                         {
-                            if (modoActual == Venta) 
+                            if (modoActual == Venta)
                             {
-                                
+
                                 bool tieneRentasActivas = false;
                                 for (const Transaccion &t : transacciones)
                                 {
-                                    
+
                                     if (t.getProductoID() == prodID && t.getModoTransaccion() == Renta)
                                     {
                                         tieneRentasActivas = true;
-                                        break; 
+                                        break;
                                     }
                                 }
 
                                 if (tieneRentasActivas)
-                                {
-                                    
                                     productoSeleccionado->setEstado(Rentada);
-                                }
                                 else
-                                {
-                                    
                                     productoSeleccionado->setEstado(Vendida);
-                                }
                             }
-                            else 
-                            {
+                            else
                                 productoSeleccionado->setEstado(Rentada);
-                            }
                         }
                     }
                     else if (modoActual == Renta)
-                    { 
+                    {
 
-                        
                         productoSeleccionado->setNumCopia(productoSeleccionado->getNumCopia() - 1);
                         productoSeleccionado->setRentadas(productoSeleccionado->getRentadas() + 1);
-                        
-                        
-                        
-                        if (productoSeleccionado->getNumCopia() == 0)
-                        {
-                            productoSeleccionado->setEstado(Rentada); 
-                        }
-                        else
-                        {
-                            productoSeleccionado->setEstado(Disponible); 
-                        }
-                        
 
-                        
-                        if (esPelicula)
-                        {
-                            clienteActivo->setPelisRentadas(clienteActivo->getPelisRentadas() + 1);
-                        }
+                        if (productoSeleccionado->getNumCopia() == 0)
+                            productoSeleccionado->setEstado(Rentada);
                         else
-                        {
+                            productoSeleccionado->setEstado(Disponible);
+
+                        if (esPelicula)
+                            clienteActivo->setPelisRentadas(clienteActivo->getPelisRentadas() + 1);
+                        else
                             clienteActivo->setVideojuegosRentados(clienteActivo->getVideojuegosRentados() + 1);
-                        }
 
                         costoItem = productoSeleccionado->getPrecioRenta();
                     }
 
-                    
                     double comisionCalculada = costoItem * 0.05;
                     empleadoActivo->agregarComision(comisionCalculada);
 
-                    
                     Transaccion t(folioActual, cliID, empID, prodID, modoActual);
                     transacciones.push_back(t);
 
@@ -847,18 +814,15 @@ void Menu::procesarRentaVenta()
                     impColor("\n¡Producto añadido con exito al registro!\n", VERDE);
                 }
                 else
-                {
                     impColor("\nMovimiento cancelado.\n", ROJO);
-                }
             }
         }
 
-        impColor("\n¿Quiere rentar o comprar otra pelicula/videojuego? (1 = Si, 2 = No): ", AMARILLO);
+        impColor("\nQuiere rentar o comprar otra pelicula/videojuego? (1 = Si, 2 = No): ", AMARILLO);
         continuarProceso = leerInt();
 
     } while (continuarProceso == 1);
 
-    
     limpiarPantalla();
     impColor("\n=================== TRANSACCION FINALIZADA ===================\\n", CIAN);
     impColor("\n\tFolio de Operacion:   " + to_string(folioActual), BLANCO);
@@ -873,7 +837,7 @@ void Menu::procesarRentaVenta()
 void Menu::devolverProducto()
 {
     limpiarPantalla();
-    impColor("\n============== PROCESAR DEVOLUCION ==============\n", CIAN);    
+    impColor("\n============== PROCESAR DEVOLUCION ==============\n", CIAN);
     impColor("\nIngrese el codigo del Cliente que devuelve: ", AMARILLO);
     int cliID = leerInt();
     Cliente *clienteActivo = nullptr;
@@ -894,7 +858,6 @@ void Menu::devolverProducto()
         return;
     }
 
-    
     if (clienteActivo->getPelisRentadas() == 0 && clienteActivo->getVideojuegosRentados() == 0)
     {
         impColor("\nEste cliente no cuenta con rentas activas en el sistema.\n", ROJO);
@@ -902,7 +865,6 @@ void Menu::devolverProducto()
         return;
     }
 
-    
     impColor("Ingrese el codigo del Producto (Pelicula/Videojuego) a devolver: ", AMARILLO);
     int prodID = leerInt();
     Producto *productoSeleccionado = nullptr;
@@ -922,7 +884,6 @@ void Menu::devolverProducto()
         return;
     }
 
-    
     bool transaccionEncontrada = false;
     for (const Transaccion &t : transacciones)
     {
@@ -940,34 +901,19 @@ void Menu::devolverProducto()
         return;
     }
 
-    
     bool esPelicula = (dynamic_cast<Pelicula *>(productoSeleccionado) != nullptr);
 
-    
     productoSeleccionado->setNumCopia(productoSeleccionado->getNumCopia() + 1);
     productoSeleccionado->setRentadas(productoSeleccionado->getRentadas() - 1);
 
-    
     if (productoSeleccionado->getNumCopia() > 0)
-    {
         productoSeleccionado->setEstado(Disponible);
-    }
 
-    
-    if (esPelicula)
-    {
-        if (clienteActivo->getPelisRentadas() > 0)
-        {
-            clienteActivo->setPelisRentadas(clienteActivo->getPelisRentadas() - 1);
-        }
-    }
-    else
-    {
-        if (clienteActivo->getVideojuegosRentados() > 0)
-        {
-            clienteActivo->setVideojuegosRentados(clienteActivo->getVideojuegosRentados() - 1);
-        }
-    }
+    if (esPelicula && (clienteActivo->getPelisRentadas() > 0))
+        clienteActivo->setPelisRentadas(clienteActivo->getPelisRentadas() - 1);
+
+    else if (clienteActivo->getVideojuegosRentados() > 0)
+        clienteActivo->setVideojuegosRentados(clienteActivo->getVideojuegosRentados() - 1);
 
     impColor("\n========================================================", VERDE);
     impColor("\n¡Devolucion procesada con exito!", VERDE);

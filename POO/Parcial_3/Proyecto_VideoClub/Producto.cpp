@@ -33,7 +33,7 @@ private:
 public:
     Producto();
     Producto(string nombre, string genero, double precioVenta, double precioRenta);
-    virtual ~Producto();
+    ~Producto();
 
     int getID();
     void setID(int);

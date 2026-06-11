@@ -99,4 +99,4 @@ void Empleado::mostrarInfo()
     impColor(string("\n\tSalario Base:    $") + to_string(getSalarioBase()), VERDE);
     impColor(string("\n\tComisiones:      $") + to_string(getComision()), VERDE);
     impColor(string("\n\tSalario Total:   $") + to_string(calcularSalario()), VERDE);
-}
+}   
