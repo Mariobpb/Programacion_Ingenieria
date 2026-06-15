@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "Persona.cpp"
 
@@ -91,6 +92,7 @@ void Empleado::agregarComision(double monto)
 
 void Empleado::mostrarInfo()
 {
+    cout << fixed << setprecision(2);
     impColor(string("\n\tID:               ") + to_string(getEmpleadoID()), VERDE);
     impColor(string("\n\tNombre:           ") + getNombre(), VERDE);
     impColor(string("\n\tDomicilio:        ") + getDomicilio(), VERDE);

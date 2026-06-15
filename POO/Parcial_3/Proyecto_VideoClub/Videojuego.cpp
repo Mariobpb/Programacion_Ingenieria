@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "Producto.cpp"
 
@@ -31,6 +32,7 @@ Videojuego::~Videojuego()
 
 void Videojuego::mostrarInfo()
 {
+    cout << fixed << setprecision(2);
     impColor("\n\tID del producto (Videojuego):      " + to_string(getID()), VERDE);
     impColor("\n\tNombre:                            " + getNombre(), VERDE);
     impColor("\n\tGenero:                            " + getGenero(), VERDE);

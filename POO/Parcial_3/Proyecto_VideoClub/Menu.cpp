@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 #include "Mostrable.cpp"
 #include "UI.cpp"
@@ -57,6 +58,7 @@ bool Menu::validarContrasena()
 
 void Menu::menuPrincipal()
 {
+    cout << fixed << setprecision(2);
     int opcion;
     do
     {
@@ -130,7 +132,6 @@ void Menu::menuPeliculaVideojuego()
             }
 
             string nombre, genero;
-            int copias;
             double pVenta, pRenta;
 
             impColor("Nombre del titulo: ", VERDE);
@@ -609,7 +610,7 @@ void Menu::menuVentaRenta()
 void Menu::procesarRentaVenta()
 {
     limpiarPantalla();
-    impColor("\n============== REALIZAR UNA RENTA / VENTA ==============\n", MAGENTA);
+    impColor("\n============== REALIZAR UNA RENTA / VENTA ==============\n\n", VERDE);
 
     bool hayEmpleados = false;
     bool hayClientes = false;
@@ -629,7 +630,7 @@ void Menu::procesarRentaVenta()
         return;
     }
 
-    impColor("Ingrese el codigo del Empleado: ", AMARILLO);
+    impColor("\nIngrese el codigo del Empleado: ", AMARILLO);
     int empID = leerInt();
     Empleado *empleadoActivo = nullptr;
     for (Persona *p : personas)
@@ -648,7 +649,7 @@ void Menu::procesarRentaVenta()
         return;
     }
 
-    impColor("Ingrese el codigo del Cliente: ", AMARILLO);
+    impColor("\nIngrese el codigo del Cliente: ", AMARILLO);
     int cliID = leerInt();
     Cliente *clienteActivo = nullptr;
     for (Persona *p : personas)
@@ -674,9 +675,9 @@ void Menu::procesarRentaVenta()
     do
     {
         limpiarPantalla();
-        impColor("\n============== AGREGAR TITULO AL FOLIO: " + to_string(folioActual) + " ==============\n", VERDE);
+        impColor("\n============== AGREGANDO AL FOLIO: " + to_string(folioActual) + " ==============\n", VERDE);
 
-        impColor("Ingrese el codigo de la Pelicula o Videojuego: ", AMARILLO);
+        impColor("\nIngrese el codigo de la Pelicula o Videojuego: ", AMARILLO);
         int prodID = leerInt();
 
         Producto *productoSeleccionado = nullptr;
@@ -747,8 +748,8 @@ void Menu::procesarRentaVenta()
                     }
                 }
 
-                impColor("\nCosto calculado: $" + to_string(costoItem), CIAN);
-                impColor("\nAceptar y confirmar movimiento? (1 = Si, 2 = No): ", AMARILLO);
+                impColor("\nCosto calculado: $" + to_string(costoItem), BLANCO);
+                impColor("\n\nAceptar y confirmar movimiento? (1 = Si, 2 = No): ", AMARILLO);
                 int confirmar = leerInt();
 
                 if (confirmar == 1)

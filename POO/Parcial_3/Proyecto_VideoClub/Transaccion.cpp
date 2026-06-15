@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "Mostrable.cpp"
 #include "UI.cpp"
@@ -104,6 +105,7 @@ Transaccion::~Transaccion() {}
 
 void Transaccion::mostrarInfo()
 {
+    cout << fixed << setprecision(2);
     impColor("\n\t========== DETALLE DE TRANSACCION ==========", BLANCO);
     impColor("\n\tFolio:          " + to_string(getNumFolio()), BLANCO);
     impColor("\n\tID Cliente:     " + to_string(getClienteID()), BLANCO);

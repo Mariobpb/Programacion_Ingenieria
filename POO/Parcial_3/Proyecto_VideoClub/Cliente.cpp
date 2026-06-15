@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "Persona.cpp"
 #include "Pelicula.cpp"
@@ -91,6 +92,7 @@ bool Cliente::verificarLimite(Videojuego* videojuego) {
 
 void Cliente::mostrarInfo()
 {
+    cout << fixed << setprecision(2);
     impColor(string("\n\tID:                     ") + to_string(getClienteID()), VERDE);
     impColor(string("\n\tNombre:                 ") + getNombre(), VERDE);
     impColor(string("\n\tDomicilio:              ") + getDomicilio(), VERDE);

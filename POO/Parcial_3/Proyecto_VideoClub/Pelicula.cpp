@@ -1,3 +1,4 @@
+#include <iomanip>
 #pragma once
 #include <iostream>
 #include <string>
@@ -48,6 +49,7 @@ void Pelicula::setDirector(string director)
 
 void Pelicula::mostrarInfo()
 {
+    cout << fixed << setprecision(2);
     impColor("\n\tID del producto (Pelicula):   " + to_string(ID), VERDE);
     impColor("\n\tNombre:                       " + nombre, VERDE);
     impColor("\n\tDirector:                     " + director, VERDE);
