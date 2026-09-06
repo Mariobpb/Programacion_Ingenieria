@@ -3,9 +3,11 @@
 
 using namespace std;
 
-int main(){
+int main()
+{
     Menu objMenu;
+    while (!objMenu.validarContrasena());
     objMenu.menuPrincipal();
-    
+
     return 0;
 }
