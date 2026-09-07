@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Parcial_1/HolaMundoJava/HolaMundoJava.iml" filepath="$PROJECT_DIR$/Parcial_1/HolaMundoJava/HolaMundoJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parcial_1/JavaVisual/JavaVisual.iml" filepath="$PROJECT_DIR$/Parcial_1/JavaVisual/JavaVisual.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/POE.iml" filepath="$PROJECT_DIR$/.idea/POE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parcial_1/Practica01/Practica01.iml" filepath="$PROJECT_DIR$/Parcial_1/Practica01/Practica01.iml" />
+    </modules>
+  </component>
+</project>

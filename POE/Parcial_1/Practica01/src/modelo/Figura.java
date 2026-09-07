@@ -1,7 +1,5 @@
 package modelo;
 
-import vista.VentanaFigura;
-
 public class Figura {
 
     private double largo;
@@ -10,18 +8,15 @@ public class Figura {
     private double volumen;
 
     public Figura() {
-
+        this.largo = 1;
+        this.ancho = 1;
+        this.alto = 1;
     }
 
     public Figura(double largo, double ancho, double alto) {
-        
-        if (largo < 0) largo *= -1;
-        if (ancho < 0) ancho *= -1;
-        if (alto < 0) alto *= -1;
-        
-        this.largo = largo;
-        this.ancho = ancho;
-        this.alto = alto;
+        this.largo = (largo < 0) ? 1: largo;
+        this.ancho = (ancho < 0) ? 1: ancho;
+        this.alto = (alto < 0) ? 1: alto;
     }
 
     public double getLargo() {
@@ -29,7 +24,7 @@ public class Figura {
     }
 
     public void setLargo(double largo) {
-        this.largo = largo;
+        this.largo = (largo < 0) ? 1: largo;
     }
 
     public double getAncho() {
@@ -37,7 +32,7 @@ public class Figura {
     }
 
     public void setAncho(double ancho) {
-        this.ancho = ancho;
+        this.ancho = (ancho < 0) ? 1: ancho;
     }
 
     public double getAlto() {
@@ -45,7 +40,7 @@ public class Figura {
     }
 
     public void setAlto(double alto) {
-        this.alto = alto;
+        this.alto = (alto < 0) ? 1: alto;
     }
 
     public double getVolumen() {
@@ -56,7 +51,5 @@ public class Figura {
         this.volumen = volumen;
     }
 
-    public double obtenerVolumen(){
-        return getLargo( ) * getAncho( ) * getAlto( );
-    }
+    public double obtenerVolumen(){ return getLargo( ) * getAncho( ) * getAlto( ); }
 }
