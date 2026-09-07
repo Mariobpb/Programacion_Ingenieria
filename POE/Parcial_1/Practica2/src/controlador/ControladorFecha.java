@@ -13,11 +13,33 @@ public class ControladorFecha implements ActionListener{
         this.fecha = fecha;
         this.vtn = vtn;
 
-        this.vtn.getBtnVerificar().addActionListener(this);
+        this.vtn.getBtnImpFechaCorta().addActionListener(this);
+        this.vtn.getBtnImpFechaLarga().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(e.getSource() == vtn.getBtnImpFechaCorta()){
+            actualizarFecha();
+            if (fecha.validarFecha() == 1) {
+                vtn.getLblRes().setText(fecha.imprimirFechaCorta());
+            } else {
+                vtn.getLblRes().setText("ERROR: Fecha Invalida");
+            }
+        }
+        if(e.getSource() == vtn.getBtnImpFechaLarga()){
+            actualizarFecha();
+            if (fecha.validarFecha() == 1) {
+                vtn.getLblRes().setText(fecha.imprimirFechaLarga());
+            } else {
+                vtn.getLblRes().setText("ERROR: Fecha Invalida");
+            }
+        }
+    }
+
+    private void actualizarFecha(){
+        fecha.setDia(Integer.parseInt(vtn.getTxtDia().getText()));
+        fecha.setMes(Integer.parseInt(vtn.getTxtMes().getText()));
+        fecha.setAnio(Integer.parseInt(vtn.getTxtAnio().getText()));
     }
 }
