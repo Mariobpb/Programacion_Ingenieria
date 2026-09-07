@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author mario
- */
 public class Fecha {
-    
+    private int dia;
+    private int mes;
+    private int anio;
+
+    public Fecha() {
+    }
+
+    public Fecha(int dia, int anio, int mes) {
+        this.dia = dia;
+        this.anio = anio;
+        this.mes = mes;
+    }
 }
