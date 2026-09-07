@@ -62,7 +62,7 @@ public class Fecha {
                 diaLimite = 31;
                 break;
         }
-        return !(dia > diaLimite);
+        return (dia > diaLimite) ? 0 : 1;
     }
 
     public String imprimirFechaCorta() {
