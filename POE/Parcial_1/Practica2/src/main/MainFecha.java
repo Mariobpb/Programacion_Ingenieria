@@ -1,5 +1,9 @@
 package main;
 
+import controlador.ControladorFecha;
+import modelo.Fecha;
+import vista.VentanaFecha;
+
 public class MainFecha {
     public static void main(String[] args) {
         Fecha objFecha = new Fecha();
