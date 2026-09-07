@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
 
-/**
- *
- * @author mario
- */
 public class VentanaFecha {
-    
+    private JFrame vtn;
+    private JTextField txtDia = null;
+    private JTextField txtMes = null;
+    private JTextField txtAnio = null;
+    private JButton btnVerificar = null;
+    private JLabel lblRes = null;
+
+    public VentanaFecha() {
+        vtn = new JFrame;
+        txtDia = new JTextField();
+        txtMes = new JTextField();
+        txtAnio = new JTextField();
+        btnVerificar = new JButton();
+        lblRes = new JLabel();
+    }
+
+    public void dibujarVentana() {
+
+    }
 }
