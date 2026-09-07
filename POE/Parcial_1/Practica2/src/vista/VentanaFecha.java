@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,7 +31,7 @@ public class VentanaFecha {
         txtDia.setColumns(10);
         txtMes.setColumns(10);
         txtAnio.setColumns(10);
-        btnVerificar.setText("Calcular Volumen");
+        btnVerificar.setText("Verificar fecha");
 
         vtn.add(new JLabel("Dia:"));
         vtn.add(txtDia);
