@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
-/**
- *
- * @author mario
- */
-public class ControladorFecha {
-    
+public class ControladorFecha implements ActionListener{
+    private Fecha fecha;
+    private VentanaFecha vtn;
+
+    public ControladorFecha(Fecha fecha, VentanaFecha vtn) {
+        this.fecha = fecha;
+        this.vtn = vtn;
+
+        this.vtn.addActionListener(this);
+    }
 }

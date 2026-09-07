@@ -23,6 +23,48 @@ public class VentanaFecha {
     }
 
     public void dibujarVentana() {
+        vtn.setLayout(new FlowLayout());
+        vtn.setSize(800, 1000);
+        vtn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        txtDia.setColumns(10);
+        txtMes.setColumns(10);
+        txtAnio.setColumns(10);
+        btnVerificar.setText("Calcular Volumen");
+
+        vtn.add(new JLabel("Dia:"));
+        vtn.add(txtDia);
+        vtn.add(new JLabel("Mes:"));
+        vtn.add(txtMes);
+        vtn.add(new JLabel("Anio:"));
+        vtn.add(txtAnio);
+        vtn.add(btnVerificar);
+        vtn.add(lblRes);
+
+        vtn.setVisible(true);
+    }
+
+    public JFrame getVtn() {
+        return vtn;
+    }
+
+    public JTextField getTxtDia() {
+        return txtDia;
+    }
+
+    public JTextField getTxtMes() {
+        return txtMes;
+    }
+
+    public JTextField getTxtAnio() {
+        return txtAnio;
+    }
+
+    public JButton getBtnVerificar() {
+        return btnVerificar;
+    }
+
+    public JLabel getLblRes() {
+        return lblRes;
     }
 }
