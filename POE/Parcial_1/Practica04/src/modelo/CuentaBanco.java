@@ -38,16 +38,19 @@ public class CuentaBanco {
     public String imprimirDatos(){
         String text = "";
         text += "Nombre: " + getNombreC();
-        text += "  Numero de cuenta: " + getNumeroC();
-        text += "  Saldo: " + getSaldoC();
+        text += "\nNumero de cuenta: " + getNumeroC();
+        text += "\nSaldo: " + getSaldoC() + "$";
         return text;
     }
 
     public void abonarCuenta(double cantidad){
         setSaldoC(getSaldoC() +  cantidad);
     }
-    public void retirarCuenta(double cantidad){
-        if(cantidad<=getSaldoC())
+    public boolean retirarCuenta(double cantidad){
+        if(cantidad<=getSaldoC()){
             setSaldoC(getSaldoC() -  cantidad);
+            return true;
+        }
+        return false;
     }
 }
