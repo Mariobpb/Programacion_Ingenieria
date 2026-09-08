@@ -52,7 +52,7 @@ public class ControladorCuentaBanco implements ActionListener {
             if (objCuentaBanco.retirarCuenta(monto)){
                 JOptionPane.showMessageDialog(null, "Monto retirado\nSaldo actual: " + objCuentaBanco.getSaldoC() + "$");
             } else {
-                JOptionPane.showMessageDialog(null, "Error:\nEl monto a retirar es insuficiente");
+                JOptionPane.showMessageDialog(null, "Error:\nEl monto a retirar es insuficiente.");
             }
         }
     }
