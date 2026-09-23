@@ -17,7 +17,7 @@ int main() {
         : "eax", "cc"
     );
     
-    printf("Base:   %d\n", base);
+    printf("Base: %d\n", base);
     printf("Altura: %d\n", altura);
     printf("Area: %d\n", area);
 
