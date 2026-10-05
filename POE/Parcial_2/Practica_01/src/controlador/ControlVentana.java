@@ -25,13 +25,9 @@ public class ControlVentana implements ActionListener {
             String turno = ventana.getBtngTurno().getSelection().getActionCommand();
             String pago = ventana.getBtngPago().getSelection().getActionCommand();
 
-            System.out.println(ing);
-            System.out.println(turno);
-            System.out.println(pago);
-
             modelo.setPrecio(modelo.calcularPrecio(ing, turno, pago));
 
-            ventana.getLblResultado().setText(String.valueOf(modelo.getPrecio()));
+            ventana.getLblResultado().setText("$"+modelo.getPrecio());
         }
     }
 }

@@ -29,7 +29,7 @@ public class VistaRadioButton {
     private JRadioButton rdbInd = null;
     private JButton btnElegir = null;
 
-    private ButtonGroup btngCarreras = new ButtonGroup();
+    private ButtonGroup btngCarreras = null;
 
     private ControlRadioButton control = null;
 

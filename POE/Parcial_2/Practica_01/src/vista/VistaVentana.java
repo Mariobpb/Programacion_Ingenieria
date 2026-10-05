@@ -143,6 +143,8 @@ public class VistaVentana {
         rdbEfectivo.setFont(fuenteSeccion);
         rdbDebito.setFont(fuenteSeccion);
         rdbCredito.setFont(fuenteSeccion);
+
+        lblResultado.setFont(fuenteTitulo);
     }
     private void anadirComponentes(){
         // Seccion Ingenieria
