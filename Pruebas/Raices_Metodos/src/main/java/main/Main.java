@@ -1,8 +1,8 @@
-package com.metodos.main;
+package main;
 
-import com.metodos.modelo.DatosEntrada;
-import com.metodos.modelo.Funcion;
-import com.metodos.modelo.metodos.Secante;
+import modelo.DatosEntrada;
+import modelo.Funcion;
+import modelo.metodos.Secante;
 
 import java.util.Scanner;
 
@@ -20,15 +20,15 @@ public class Main {
             expresion = scanner.nextLine();
             try {
                 funcion = new Funcion(expresion);
+                System.out.print("x0 = ");
+                x0 = scanner.nextDouble();
+                System.out.print("x1 = ");
+                x1 = scanner.nextDouble();
+                System.out.print("tolerancia = ");
+                tolerancia = scanner.nextDouble();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-            System.out.print("x0 = ");
-            x0 = scanner.nextDouble();
-            System.out.print("x1 = ");
-            x1 = scanner.nextDouble();
-            System.out.print("tolerancia = ");
-            tolerancia = scanner.nextDouble();
         }
         datosEntrada = new DatosEntrada(funcion, x0, x1, tolerancia);
         Secante secante = new Secante(datosEntrada);

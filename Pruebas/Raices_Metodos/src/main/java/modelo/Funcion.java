@@ -1,11 +1,8 @@
-package com.metodos.modelo;
+package modelo;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.ValidationResult;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Funcion {
     private String funcionTexto;

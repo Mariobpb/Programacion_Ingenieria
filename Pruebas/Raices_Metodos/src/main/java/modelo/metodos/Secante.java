@@ -1,7 +1,7 @@
-package com.metodos.modelo.metodos;
+package modelo.metodos;
 
-import com.metodos.modelo.DatosEntrada;
-import com.metodos.modelo.Redondeo;
+import modelo.DatosEntrada;
+import modelo.Redondeo;
 
 public class Secante extends Redondeo {
     private DatosEntrada datosEntrada;

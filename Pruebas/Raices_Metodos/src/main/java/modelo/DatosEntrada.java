@@ -1,4 +1,4 @@
-package com.metodos.modelo;
+package modelo;
 
 public class DatosEntrada extends Redondeo {
     private Funcion funcion;
