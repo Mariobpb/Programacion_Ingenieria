@@ -4,6 +4,7 @@ import modelo.DatosEntrada;
 import modelo.Redondeo;
 
 public class BirgeVieta extends Redondeo {
+    private double x2;
     DatosEntrada datosEntrada = null;
 
     public BirgeVieta(DatosEntrada datosEntrada) {
@@ -13,20 +14,27 @@ public class BirgeVieta extends Redondeo {
     public void encontrarRaices(){
         int i = 1;
         double x0 = datosEntrada.getX0();
-        double x1 = 0;
+        double x1 = datosEntrada.getX1();
 
-        System.out.println("i\t\txk\t\txk+1\t\t| xk+1 - xk | < " + datosEntrada.getTolerancia());
+        System.out.println("i\t\ta\t\tb\t\txr\t\t| f(xr) < " + datosEntrada.getTolerancia());
         do{
-            x1 = redondear(x0 - (datosEntrada.getFuncion().evaluar(x0)/datosEntrada.getFuncion().evaluarDerivada(x0)));
-            System.out.println(i+"\t\t"+ x0 +"\t\t" + x1 + "\t\t" + calcularDiferenciasX(x1, x0));
+            x2 = redondear(x1 - ((datosEntrada.getFuncion().evaluar(x1))*(x1-x0))/
+                    (redondear(datosEntrada.getFuncion().evaluar(x1))-redondear(datosEntrada.getFuncion().evaluar(x0))) );
+            System.out.println(i+"\t\t"+ x0 +"\t\t" + x1 + "\t\t" + x2 +  "\t\t" + calcularTolerancia());
             x0 = x1;
+            x1 = x2;
             i++;
-        }while (calcularDiferenciasX(x1, x0) > datosEntrada.getTolerancia());
-        System.out.println("\nDiferencia = " + calcularDiferenciasX(x1, x0));
+            if (i > 100) break;
+        }while (calcularTolerancia() > datosEntrada.getTolerancia());
+        System.out.println("\nf(xr) = " + calcularTolerancia());
         System.out.println("x = " + x1);
     }
 
-    public double calcularDiferenciasX(double x1, double x0){
-        return redondear(Math.abs(x1- x0));
+    private double calcularTolerancia() {
+        return Math.abs(redondear(datosEntrada.getFuncion().evaluar(x2)));
+    }
+
+    public double getX2() {
+        return x2;
     }
 }
