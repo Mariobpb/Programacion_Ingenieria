@@ -1,9 +1,10 @@
 package modelo.metodos;
 
 import modelo.DatosEntrada;
+import modelo.MetodoNumerico;
 import modelo.Redondeo;
 
-public class ReglaFalsa extends Redondeo {
+public class ReglaFalsa extends Redondeo implements MetodoNumerico {
     private double x2;
     DatosEntrada datosEntrada = null;
 

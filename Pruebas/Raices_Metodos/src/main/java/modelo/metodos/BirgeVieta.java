@@ -1,9 +1,10 @@
 package modelo.metodos;
 
 import modelo.DatosEntrada;
+import modelo.MetodoNumerico;
 import modelo.Redondeo;
 
-public class BirgeVieta extends Redondeo {
+public class BirgeVieta extends Redondeo implements MetodoNumerico {
     private double x2;
     DatosEntrada datosEntrada = null;
 
@@ -11,7 +12,12 @@ public class BirgeVieta extends Redondeo {
         this.datosEntrada = datosEntrada;
     }
 
-    public void encontrarRaices(){
+    public double getX2() {
+        return x2;
+    }
+
+    @Override
+    public void calcularRaiz() {
         int i = 1;
         double x0 = datosEntrada.getX0();
         double x1 = datosEntrada.getX1();
@@ -30,11 +36,15 @@ public class BirgeVieta extends Redondeo {
         System.out.println("x = " + x1);
     }
 
-    private double calcularTolerancia() {
+    @Override
+    public double calcularTolerancia() {
         return Math.abs(redondear(datosEntrada.getFuncion().evaluar(x2)));
     }
 
-    public double getX2() {
-        return x2;
+    @Override
+    public double validarCondicion() {
+        return
     }
+
+
 }

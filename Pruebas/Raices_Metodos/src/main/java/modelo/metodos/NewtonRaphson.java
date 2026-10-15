@@ -1,9 +1,10 @@
 package modelo.metodos;
 
 import modelo.DatosEntrada;
+import modelo.MetodoNumerico;
 import modelo.Redondeo;
 
-public class NewtonRaphson extends Redondeo {
+public class NewtonRaphson extends Redondeo implements MetodoNumerico {
     DatosEntrada datosEntrada = null;
 
     public NewtonRaphson(DatosEntrada datosEntrada) {

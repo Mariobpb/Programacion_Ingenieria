@@ -1,9 +1,10 @@
 package modelo.metodos;
 
 import modelo.DatosEntrada;
+import modelo.MetodoNumerico;
 import modelo.Redondeo;
 
-public class Secante extends Redondeo {
+public class Secante extends Redondeo implements MetodoNumerico {
     private DatosEntrada datosEntrada;
     private double x2;
 
