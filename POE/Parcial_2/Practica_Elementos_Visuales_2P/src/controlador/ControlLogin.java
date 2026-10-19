@@ -3,25 +3,26 @@ package controlador;
 import modelo.Clinica;
 import modelo.Usuario;
 import vista.VentanaLogin;
+import vista.VentanaPrincipal;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlLogin implements ActionListener {
-    private VentanaLogin vista;
+    private VentanaLogin ventanaLogin = null;
+    private VentanaPrincipal ventanaPrincipal = null;
 
-    public ControlLogin(VentanaLogin vista) {
-        this.vista = vista;
+    public ControlLogin(VentanaLogin ventanaLogin) {
+        this.ventanaLogin = ventanaLogin;
 
-        vista.getBtnIngresar().addActionListener(this);
+        ventanaLogin.getBtnIngresar().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.getBtnIngresar()){
-            String usuario = vista.getTxtUsuario().getText();
-            String contrasena = vista.getTxtContrasena().getText();
+        if (e.getSource() == ventanaLogin.getBtnIngresar()){
+            String usuario = ventanaLogin.getTxtUsuario().getText();
+            String contrasena = ventanaLogin.getTxtContrasena().getText();
 
             boolean credencialesValidas = false;
 
@@ -29,6 +30,13 @@ public class ControlLogin implements ActionListener {
                 if (u.getUsuario().equals(usuario) && u.getContrasena().equals(contrasena)) {
                     credencialesValidas = true;
                     System.out.println("BIENVENIDO");
+
+                    if (ventanaPrincipal == null) {
+                        ventanaPrincipal = new VentanaPrincipal(ventanaLogin);
+                        ventanaPrincipal.mostrarVentana();
+                    }
+                    ventanaPrincipal.getVtnPrincipal().setVisible(true);
+                    ventanaLogin.getVtnLogin().setVisible(false);
 
                     break;
                 }
