@@ -3,7 +3,7 @@ package modelo;
 public class Persona {
     private String nombre;
     private int edad;
-    private int telefono;
+    private long telefono;
 
     public Persona() {
         nombre = "";
@@ -11,7 +11,7 @@ public class Persona {
         telefono = -1;
     }
 
-    public Persona(String nombre, int edad, int telefono) {
+    public Persona(String nombre, int edad, long telefono) {
         this.nombre = nombre;
         this.edad = edad;
         this.telefono = telefono;
@@ -39,11 +39,11 @@ public class Persona {
         this.edad = edad;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 }

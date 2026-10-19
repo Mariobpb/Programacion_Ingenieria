@@ -1,11 +1,18 @@
 package modelo;
 
 public class Doctor extends Empleado{
-    public Doctor(String nombre, int edad, int telefono, String urlFoto, String domicilio) {
-        super(nombre, edad, telefono, urlFoto, domicilio);
+    private String titulo;
+
+    public Doctor(String nombre, int edad, long telefono, String urlFoto, String domicilio, double salarioBase, String titulo) {
+        super(nombre, edad, telefono, urlFoto, domicilio, salarioBase);
+        this.titulo = titulo;
     }
 
-    public Doctor(String nombre, int edad, String urlFoto, String domicilio) {
-        super(nombre, edad, urlFoto, domicilio);
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 }

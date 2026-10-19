@@ -5,11 +5,11 @@ public class Usuario extends Empleado {
     private String contrasena;
     private String rol;
 
-    public Usuario(String nombre, int edad, String urlFoto, String domicilio, String rol, String contrasena, String usuario) {
-        super(nombre, edad, urlFoto, domicilio);
-        this.rol = rol;
-        this.contrasena = contrasena;
+    public Usuario(String nombre, int edad, long telefono, String urlFoto, String domicilio, double salarioBase, String usuario, String contrasena, String rol) {
+        super(nombre, edad, telefono, urlFoto, domicilio, salarioBase);
         this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.rol = rol;
     }
 
     public String getUsuario() {

@@ -3,7 +3,7 @@ package modelo;
 public class Paciente extends Persona {
     private String restricciones;
 
-    public Paciente(String nombre, int edad, int telefono, String restricciones) {
+    public Paciente(String nombre, int edad, long telefono, String restricciones) {
         super(nombre, edad, telefono);
         this.restricciones = restricciones;
     }
