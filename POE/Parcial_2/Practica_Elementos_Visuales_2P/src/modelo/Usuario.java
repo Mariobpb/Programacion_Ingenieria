@@ -12,10 +12,6 @@ public class Usuario extends Empleado {
         this.usuario = usuario;
     }
 
-    public void mostrarInfo(){
-
-    }
-
     public String getUsuario() {
         return usuario;
     }

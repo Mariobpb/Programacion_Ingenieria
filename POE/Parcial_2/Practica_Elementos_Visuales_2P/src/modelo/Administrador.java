@@ -28,9 +28,4 @@ public class Administrador extends Usuario {
     public void eliminarUsuario(Usuario usuario){
 
     }
-
-    @Override
-    public void mostrarInfo(){
-        
-    }
 }
