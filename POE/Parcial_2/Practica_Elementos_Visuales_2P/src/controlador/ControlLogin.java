@@ -2,17 +2,17 @@ package controlador;
 
 import modelo.Clinica;
 import modelo.Usuario;
-import vista.VentanaLogin;
-import vista.VentanaPrincipal;
+import vista.VistaLogin;
+import vista.VistaPrincipal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlLogin implements ActionListener {
-    private VentanaLogin ventanaLogin = null;
-    private VentanaPrincipal ventanaPrincipal = null;
+    private VistaLogin ventanaLogin = null;
+    private VistaPrincipal ventanaPrincipal = null;
 
-    public ControlLogin(VentanaLogin ventanaLogin) {
+    public ControlLogin(VistaLogin ventanaLogin) {
         this.ventanaLogin = ventanaLogin;
 
         ventanaLogin.getBtnIngresar().addActionListener(this);
@@ -29,20 +29,22 @@ public class ControlLogin implements ActionListener {
             for (Usuario u : Clinica.usuarios) {
                 if (u.getUsuario().equals(usuario) && u.getContrasena().equals(contrasena)) {
                     credencialesValidas = true;
+                    ventanaLogin.getLblMensaje().setText("");
                     System.out.println("BIENVENIDO");
 
                     if (ventanaPrincipal == null) {
-                        ventanaPrincipal = new VentanaPrincipal(ventanaLogin);
+                        ventanaPrincipal = new VistaPrincipal(ventanaLogin);
                         ventanaPrincipal.mostrarVentana();
                     }
-                    ventanaPrincipal.getVtnPrincipal().setVisible(true);
-                    ventanaLogin.getVtnLogin().setVisible(false);
+                    ventanaPrincipal.setVisible(true);
+                    ventanaLogin.setVisible(false);
 
                     break;
                 }
             }
 
             if(!credencialesValidas) {
+                ventanaLogin.getLblMensaje().setText("Usuario incorrecto");
                 System.out.println("Usuario incorrecto");
             }
         }

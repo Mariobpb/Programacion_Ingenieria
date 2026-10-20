@@ -5,7 +5,7 @@ import controlador.ControlLogin;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaLogin extends JFrame implements FormatoVentana{
+public class VistaLogin extends JFrame implements FormatoVista {
     private ControlLogin controlLogin = null;
 
     private JPanel panelPrincipal = null;
@@ -16,11 +16,13 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
     private JLabel lblContrasena = null;
     private JPasswordField txtContrasena = null;
     private JButton btnIngresar = null;
+    private JLabel lblMensaje = null;
 
     private Font fuenteTitulo = null;
     private Font fuenteSubtitulo = null;
+    private Font fuenteMensaje = null;
 
-    public VentanaLogin() {
+    public VistaLogin() {
         setTitle("LogIn");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 600);
@@ -57,8 +59,11 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
 
         btnIngresar = new JButton("Ingresar");
 
+        lblMensaje = new JLabel();
+
         fuenteTitulo = new Font("Arial", Font.BOLD, 30);
         fuenteSubtitulo = new Font("Arial", Font.BOLD, 20);
+        fuenteMensaje = new Font("Arial", Font.BOLD, 18);
     }
 
     @Override
@@ -72,6 +77,11 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
     }
 
     @Override
+    public void cargarImagenes() {
+
+    }
+
+    @Override
     public void configurarComponenetes() {
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         lblTitulo.setFont(fuenteTitulo);
@@ -80,6 +90,12 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
         lblContrasena.setFont(fuenteSubtitulo);
         txtContrasena.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
         btnIngresar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblMensaje.setForeground(Color.RED);
+    }
+
+    @Override
+    public void configurarImagenes() {
+
     }
 
     @Override
@@ -90,6 +106,7 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
         panelPrincipal.add(lblContrasena);
         panelPrincipal.add(txtContrasena);
         panelPrincipal.add(btnIngresar);
+        panelPrincipal.add(lblMensaje);
     }
 
     public JTextField getTxtUsuario() {
@@ -102,5 +119,9 @@ public class VentanaLogin extends JFrame implements FormatoVentana{
 
     public JButton getBtnIngresar() {
         return btnIngresar;
+    }
+
+    public JLabel getLblMensaje() {
+        return lblMensaje;
     }
 }

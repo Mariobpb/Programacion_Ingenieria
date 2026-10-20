@@ -7,6 +7,14 @@ public class Alumno extends Persona{
     private double calProgra;
     private double Promedio;
 
+    public Alumno() {
+    }
+
+    public Alumno(String nombre, int edad, String email, String codigo, String carrera) {
+        super(nombre, edad, email, codigo);
+        this.carrera = carrera;
+    }
+
     public String getCarrera() {
         return carrera;
     }
