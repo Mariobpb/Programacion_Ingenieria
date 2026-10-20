@@ -5,10 +5,9 @@ import controlador.ControlLogin;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaLogin implements FormatoVentana{
+public class VentanaLogin extends JFrame implements FormatoVentana{
     private ControlLogin controlLogin = null;
 
-    private JFrame vtnLogin = null;
     private JPanel panelPrincipal = null;
 
     private JLabel lblTitulo = null;
@@ -22,11 +21,11 @@ public class VentanaLogin implements FormatoVentana{
     private Font fuenteSubtitulo = null;
 
     public VentanaLogin() {
-        vtnLogin = new JFrame("LogIn");
-        vtnLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        vtnLogin.setSize(900, 600);
-        vtnLogin.setLocationRelativeTo(null);
-        vtnLogin.setResizable(false);
+        setTitle("LogIn");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900, 600);
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @Override
@@ -38,10 +37,10 @@ public class VentanaLogin implements FormatoVentana{
         agregarComponentes();
 
 
-        vtnLogin.add(panelPrincipal);
+        add(panelPrincipal);
 
         controlLogin = new ControlLogin(this);
-        vtnLogin.setVisible(true);
+        setVisible(true);
     }
 
     @Override
@@ -103,9 +102,5 @@ public class VentanaLogin implements FormatoVentana{
 
     public JButton getBtnIngresar() {
         return btnIngresar;
-    }
-
-    public JFrame getVtnLogin() {
-        return vtnLogin;
     }
 }

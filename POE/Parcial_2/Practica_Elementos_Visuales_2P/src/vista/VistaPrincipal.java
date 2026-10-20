@@ -4,20 +4,19 @@ import controlador.ControlLogin;
 
 import javax.swing.*;
 
-public class VentanaPrincipal implements FormatoVentana{
+public class VentanaPrincipal extends JFrame implements FormatoVentana{
     private VentanaLogin vtnLogin = null;
     private ControlLogin controlLogin = null;
 
-    private JFrame vtnPrincipal = null;
     private JPanel panelPrincipal = null;
 
     public VentanaPrincipal(VentanaLogin vtnLogin) {
         this.vtnLogin = vtnLogin;
-        vtnPrincipal = new JFrame("Gestor de Citas");
-        vtnPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        vtnPrincipal.setSize(1300, 900);
-        vtnPrincipal.setLocationRelativeTo(null);
-        vtnPrincipal.setResizable(false);
+        setTitle("Gestor de Citas");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1300, 900);
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @Override
@@ -48,9 +47,5 @@ public class VentanaPrincipal implements FormatoVentana{
     @Override
     public void agregarComponentes() {
 
-    }
-
-    public JFrame getVtnPrincipal() {
-        return vtnPrincipal;
     }
 }
