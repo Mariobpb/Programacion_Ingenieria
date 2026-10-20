@@ -10,17 +10,15 @@ import java.awt.event.ActionListener;
 
 public class ControlLogin implements ActionListener {
     private VistaLogin ventanaLogin = null;
-    private VistaPrincipal ventanaPrincipal = null;
 
     public ControlLogin(VistaLogin ventanaLogin) {
         this.ventanaLogin = ventanaLogin;
-
         ventanaLogin.getBtnIngresar().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ventanaLogin.getBtnIngresar()){
+        if (e.getSource() == ventanaLogin.getBtnIngresar()) {
             String usuario = ventanaLogin.getTxtUsuario().getText();
             String contrasena = ventanaLogin.getTxtContrasena().getText();
 
@@ -30,22 +28,17 @@ public class ControlLogin implements ActionListener {
                 if (u.getUsuario().equals(usuario) && u.getContrasena().equals(contrasena)) {
                     credencialesValidas = true;
                     ventanaLogin.getLblMensaje().setText("");
-                    System.out.println("BIENVENIDO");
 
-                    if (ventanaPrincipal == null) {
-                        ventanaPrincipal = new VistaPrincipal(ventanaLogin);
-                        ventanaPrincipal.mostrarVentana();
-                    }
-                    ventanaPrincipal.setVisible(true);
+                    VistaPrincipal ventanaPrincipal = new VistaPrincipal(ventanaLogin, u);
+                    ventanaPrincipal.mostrarVentana();
+
                     ventanaLogin.setVisible(false);
-
                     break;
                 }
             }
 
-            if(!credencialesValidas) {
-                ventanaLogin.getLblMensaje().setText("Usuario incorrecto");
-                System.out.println("Usuario incorrecto");
+            if (!credencialesValidas) {
+                ventanaLogin.getLblMensaje().setText("Credenciales Incorrectas");
             }
         }
     }

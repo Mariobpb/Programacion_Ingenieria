@@ -9,6 +9,8 @@ public class VistaLogin extends JFrame implements FormatoVista {
     private ControlLogin controlLogin = null;
 
     private JPanel panelPrincipal = null;
+    private JPanel panelUsuario = null;
+    private JPanel panelContrasena = null;
 
     private JLabel lblTitulo = null;
     private JLabel lblUsuario = null;
@@ -20,13 +22,11 @@ public class VistaLogin extends JFrame implements FormatoVista {
 
     private Font fuenteTitulo = null;
     private Font fuenteSubtitulo = null;
-    private Font fuenteMensaje = null;
+    private Font fuenteIngresoDatos = null;
 
     public VistaLogin() {
         setTitle("LogIn");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 600);
-        setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -34,12 +34,13 @@ public class VistaLogin extends JFrame implements FormatoVista {
     public void mostrarVentana() {
         instanciarComponentes();
         definirLayout();
-        configurarListeners();
         configurarComponenetes();
         agregarComponentes();
 
-
         add(panelPrincipal);
+
+        pack();
+        setLocationRelativeTo(null);
 
         controlLogin = new ControlLogin(this);
         setVisible(true);
@@ -48,32 +49,36 @@ public class VistaLogin extends JFrame implements FormatoVista {
     @Override
     public void instanciarComponentes(){
         panelPrincipal = new JPanel();
+        panelUsuario = new JPanel();
+        panelContrasena = new JPanel();
 
-        lblTitulo = new JLabel("INGRESO AL SISTEMA DE GESTIÓN");
+        lblTitulo = new JLabel("SISTEMA DE GESTIÓN");
 
         lblUsuario = new JLabel("Usuario:");
-        txtUsuario = new JTextField();
+        txtUsuario = new JTextField(20);
 
         lblContrasena = new JLabel("Contraseña:");
-        txtContrasena = new JPasswordField();
+        txtContrasena = new JPasswordField(20);
 
-        btnIngresar = new JButton("Ingresar");
+        btnIngresar = new JButton("INGRESAR");
 
-        lblMensaje = new JLabel();
+        lblMensaje = new JLabel("", SwingConstants.CENTER);
 
-        fuenteTitulo = new Font("Arial", Font.BOLD, 30);
-        fuenteSubtitulo = new Font("Arial", Font.BOLD, 20);
-        fuenteMensaje = new Font("Arial", Font.BOLD, 18);
+        fuenteTitulo = new Font("Segoe UI", Font.BOLD, 35);
+        fuenteSubtitulo = new Font("Segoe UI", Font.BOLD, 20);
+        fuenteIngresoDatos = new Font("Segoe UI", Font.BOLD, 16);
+    }
+
+    @Override
+    public void configurarImagenes() {
+
     }
 
     @Override
     public void definirLayout() {
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-    }
-
-    @Override
-    public void configurarListeners() {
-        btnIngresar.addActionListener(controlLogin);
+        panelUsuario.setLayout(new FlowLayout(FlowLayout.RIGHT, 30, 10));
+        panelContrasena.setLayout(new FlowLayout(FlowLayout.RIGHT, 30, 10));
     }
 
     @Override
@@ -83,29 +88,56 @@ public class VistaLogin extends JFrame implements FormatoVista {
 
     @Override
     public void configurarComponenetes() {
-        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        panelPrincipal.setBackground(Color.WHITE);
+        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(25, 40, 25, 40));
+
+        panelUsuario.setOpaque(false);
+        panelContrasena.setOpaque(false);
+
         lblTitulo.setFont(fuenteTitulo);
+        lblTitulo.setForeground(Color.BLACK);
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panelUsuario.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panelContrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         lblUsuario.setFont(fuenteSubtitulo);
-        txtUsuario.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+        lblUsuario.setForeground(Color.BLACK);
+        txtUsuario.setFont(fuenteIngresoDatos);
+
         lblContrasena.setFont(fuenteSubtitulo);
-        txtContrasena.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+        lblContrasena.setForeground(Color.BLACK);
+        txtContrasena.setFont(fuenteIngresoDatos);
+
+        btnIngresar.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        btnIngresar.setForeground(Color.WHITE);
+        btnIngresar.setBackground(Color.DARK_GRAY);
+        btnIngresar.setFocusPainted(false);
+        btnIngresar.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        btnIngresar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnIngresar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblMensaje.setForeground(Color.RED);
+
+        lblMensaje.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblMensaje.setForeground(new Color(225, 29, 72));
+        lblMensaje.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-    @Override
-    public void configurarImagenes() {
-
-    }
 
     @Override
     public void agregarComponentes() {
+        panelUsuario.add(lblUsuario);
+        panelUsuario.add(txtUsuario);
+
+        panelContrasena.add(lblContrasena);
+        panelContrasena.add(txtContrasena);
+
         panelPrincipal.add(lblTitulo);
-        panelPrincipal.add(lblUsuario);
-        panelPrincipal.add(txtUsuario);
-        panelPrincipal.add(lblContrasena);
-        panelPrincipal.add(txtContrasena);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 15)));
+        panelPrincipal.add(panelUsuario);
+        panelPrincipal.add(panelContrasena);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 15)));
         panelPrincipal.add(btnIngresar);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
         panelPrincipal.add(lblMensaje);
     }
 
