@@ -13,10 +13,10 @@ public class MainGestor {
     }
 
     private static void agregarDatosEstaticos(){
-        Clinica.usuarios.add(new Administrador("Mario Ponce", 22, 3323380639L, "Latuza 159", 15000.0, "Matutino", "MBPB", "12345"));
+        Clinica.usuarios.add(new Administrador("Mario Ponce", 22, 3323380639L, "Latuza 159", 15000.0, "Matutino", "Q", "1"));
         Clinica.usuarios.add(new Administrador("Carlos Ruiz", 38, 3311223344L, "Av. Hidalgo 450", 22000.0, "Vespertino", "CRuiz", "admin123"));
 
-        Clinica.usuarios.add(new Recepcionista("Mariana Torres", 23, 3324380132L, "Lomas 821", 18000.0, "Matutino", "MI", "12345"));
+        Clinica.usuarios.add(new Recepcionista("Mariana Torres", 23, 3324380132L, "Lomas 821", 18000.0, "Matutino", "A", "2"));
         Clinica.usuarios.add(new Recepcionista("Fernanda Delgado", 26, 3355667788L, "Calle Independencia 102", 14000.0, "Vespertino", "FDelgado", "rec123"));
         Clinica.usuarios.add(new Recepcionista("Andrea Morales", 24, 3366778899L, "Av. México 550", 13500.0, "Matutino", "AMorales", "rec456"));
         Clinica.usuarios.add(new Recepcionista("Valeria Ortega", 28, 3377889900L, "Calle Morelos 980", 14500.0, "Vespertino", "VOrtega", "rec789"));

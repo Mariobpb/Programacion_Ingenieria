@@ -2,6 +2,8 @@ package controlador;
 
 import modelo.Clinica;
 import modelo.Usuario;
+import vista.PanelGestionCitas;
+import vista.PanelGestionEmpleados;
 import vista.VistaLogin;
 import vista.VistaPrincipal;
 
@@ -30,8 +32,25 @@ public class ControlLogin implements ActionListener {
                     ventanaLogin.getLblMensaje().setText("");
 
                     VistaPrincipal ventanaPrincipal = new VistaPrincipal(ventanaLogin, u);
-                    ventanaPrincipal.mostrarVentana();
 
+                    String rol = u.getRol().toUpperCase();
+
+                    if (rol.contains("ADMIN")) {
+                        PanelGestionEmpleados panelEmpleados = new PanelGestionEmpleados(u);
+                        panelEmpleados.mostrarVentana();
+
+                        ventanaPrincipal.setPanelEmpleados(panelEmpleados);
+                        new ControlAdmin(ventanaPrincipal);
+
+                    } else if (rol.contains("RECEPCION")) {
+                        PanelGestionCitas panelCitas = new PanelGestionCitas(u);
+                        panelCitas.mostrarVentana();
+
+                        ventanaPrincipal.setPanelCitas(panelCitas);
+                        new ControlRecepcion(ventanaPrincipal);
+                    }
+
+                    ventanaPrincipal.mostrarVentana();
                     ventanaLogin.setVisible(false);
                     break;
                 }

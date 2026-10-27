@@ -9,10 +9,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControlAdmin implements ActionListener {
+public class ControlAdmin implements ActionListener, ItemListener {
     private VistaPrincipal vistaPrincipal;
     private VistaAgregarEmpleado ventanaAgregar;
 
@@ -56,10 +58,22 @@ public class ControlAdmin implements ActionListener {
         }
     }
 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (ventanaAgregar != null && e.getSource() == ventanaAgregar.getCmbRol()) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                ventanaAgregar.actualizarEstadoCampos();
+            }
+        }
+    }
+
     private void abrirFormularioAgregar() {
         ventanaAgregar = new VistaAgregarEmpleado(vistaPrincipal);
         ventanaAgregar.getBtnGuardar().addActionListener(this);
         ventanaAgregar.getBtnCancelar().addActionListener(this);
+
+        ventanaAgregar.getCmbRol().addItemListener(this);
+
         ventanaAgregar.mostrarVentana();
     }
 

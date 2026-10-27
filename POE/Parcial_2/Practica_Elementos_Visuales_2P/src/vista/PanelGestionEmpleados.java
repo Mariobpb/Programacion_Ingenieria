@@ -4,7 +4,7 @@ import modelo.Usuario;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Objects;
@@ -27,12 +27,13 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
     private JLabel lblFotoPerfil;
     private JLabel lblNombreAdmin;
     private JLabel lblRolAdmin;
-    private JLabel lblUsuarioAdmin;
-    private JLabel lblEdadAdmin;
-    private JLabel lblTelefonoAdmin;
-    private JLabel lblTurnoAdmin;
-    private JLabel lblSalarioAdmin;
-    private JLabel lblDomicilioAdmin;
+
+    private JLabel lblUsuarioVal;
+    private JLabel lblEdadVal;
+    private JLabel lblTelefonoVal;
+    private JLabel lblTurnoVal;
+    private JLabel lblSalarioVal;
+    private JLabel lblDomicilioVal;
 
     private JPanel panelFiltros;
     private JLabel lblBuscarNombre;
@@ -44,6 +45,14 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
     private JTable tablaEmpleados;
     private DefaultTableModel modeloTabla;
     private JScrollPane scrollTabla;
+
+    private final Color COLOR_FONDO_GENERAL = new Color(15, 23, 42);
+    private final Color COLOR_PANEL_SECUNDARIO = new Color(30, 41, 59);
+    private final Color COLOR_TARJETA_DATOS = new Color(51, 65, 85);
+    private final Color COLOR_TEXTO_MAIN = new Color(248, 250, 252);
+    private final Color COLOR_TEXTO_MUTED = new Color(148, 163, 184);
+    private final Color COLOR_AZUL_ACCENT = new Color(59, 130, 246);
+    private final Color COLOR_BORDER = new Color(71, 85, 105);
 
     public PanelGestionEmpleados(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
@@ -73,6 +82,7 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
         menuOpciones.add(itemAgregar);
         menuOpciones.add(itemEliminar);
         menuOpciones.add(itemModificar);
+        menuOpciones.addSeparator();
         menuOpciones.add(itemCerrarSesion);
         menuBarra.add(menuOpciones);
 
@@ -80,18 +90,19 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
         panelDerechoLista = new JPanel();
 
         lblFotoPerfil = new JLabel();
-        lblNombreAdmin = new JLabel(usuarioActual.getNombre());
-        lblRolAdmin = new JLabel("Rol: " + usuarioActual.getRol());
-        lblUsuarioAdmin = new JLabel("Usuario: " + usuarioActual.getUsuario());
-        lblEdadAdmin = new JLabel("Edad: " + usuarioActual.getEdad() + " años");
-        lblTelefonoAdmin = new JLabel("Teléfono: " + usuarioActual.getTelefono());
-        lblTurnoAdmin = new JLabel("Turno: " + (usuarioActual.getTurno() != null ? usuarioActual.getTurno() : "N/A"));
-        lblSalarioAdmin = new JLabel("Salario Base: $" + usuarioActual.getSalarioBase());
-        lblDomicilioAdmin = new JLabel("Domicilio: " + usuarioActual.getDomicilio());
+        lblNombreAdmin = new JLabel(usuarioActual.getNombre(), SwingConstants.CENTER);
+        lblRolAdmin = new JLabel(usuarioActual.getRol(), SwingConstants.CENTER);
+
+        lblUsuarioVal = new JLabel(usuarioActual.getUsuario());
+        lblEdadVal = new JLabel(usuarioActual.getEdad() + " años");
+        lblTelefonoVal = new JLabel(String.valueOf(usuarioActual.getTelefono()));
+        lblTurnoVal = new JLabel(usuarioActual.getTurno() != null ? usuarioActual.getTurno() : "N/A");
+        lblSalarioVal = new JLabel("$" + usuarioActual.getSalarioBase());
+        lblDomicilioVal = new JLabel("<html>" + usuarioActual.getDomicilio() + "</html>");
 
         panelFiltros = new JPanel();
         lblBuscarNombre = new JLabel("Buscar por Nombre:");
-        txtBuscarNombre = new JTextField(15);
+        txtBuscarNombre = new JTextField(12);
         lblFiltroTipo = new JLabel("Tipo de Empleado:");
 
         String[] tipos = {"Todos", "Administrador", "Recepcionista", "Doctor"};
@@ -102,9 +113,13 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
                 "Nombre", "Edad", "Teléfono", "Rol/Tipo", "Turno",
                 "Salario Base", "Título/Cédula", "Especialidad"
         };
-        modeloTabla = new DefaultTableModel(columnas, 0);
+        modeloTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tablaEmpleados = new JTable(modeloTabla);
-
         scrollTabla = new JScrollPane(tablaEmpleados);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdoPerfil, panelDerechoLista);
@@ -123,74 +138,97 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
     public void definirLayout() {
         setLayout(new BorderLayout());
         panelIzquierdoPerfil.setLayout(new BoxLayout(panelIzquierdoPerfil, BoxLayout.Y_AXIS));
-        panelDerechoLista.setLayout(new BorderLayout());
-
-        panelFiltros.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10));
+        panelDerechoLista.setLayout(new BorderLayout(10, 10));
+        panelFiltros.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 10));
     }
 
     @Override
     public void configurarComponenetes() {
-        Font fuenteTitulos = new Font("Segoe UI", Font.BOLD, 17);
-        Font fuenteTexto = new Font("Segoe UI", Font.PLAIN, 13);
-        Font fuenteDestacado = new Font("Segoe UI", Font.BOLD, 13);
+        setBackground(COLOR_FONDO_GENERAL);
 
-        panelIzquierdoPerfil.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Mi Perfil", TitledBorder.CENTER, TitledBorder.TOP, new Font("Segoe UI", Font.BOLD, 14)),
-                new EmptyBorder(15, 15, 15, 15)
-        ));
-        panelIzquierdoPerfil.setPreferredSize(new Dimension(290, 0));
-        panelIzquierdoPerfil.setBackground(Color.WHITE);
+        menuBarra.setBackground(COLOR_PANEL_SECUNDARIO);
+        menuBarra.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, COLOR_BORDER));
+        menuOpciones.setForeground(COLOR_TEXTO_MAIN);
+        menuOpciones.setFont(new Font("Segoe UI", Font.BOLD, 13));
+
+        panelIzquierdoPerfil.setBackground(COLOR_PANEL_SECUNDARIO);
+        panelIzquierdoPerfil.setBorder(new EmptyBorder(20, 20, 20, 20));
+        panelIzquierdoPerfil.setPreferredSize(new Dimension(320, 0));
 
         lblFotoPerfil.setPreferredSize(new Dimension(110, 110));
         lblFotoPerfil.setMaximumSize(new Dimension(110, 110));
         lblFotoPerfil.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        lblNombreAdmin.setFont(fuenteTitulos);
+        lblNombreAdmin.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        lblNombreAdmin.setForeground(COLOR_TEXTO_MAIN);
         lblNombreAdmin.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        lblRolAdmin.setFont(fuenteDestacado);
-        lblRolAdmin.setForeground(new Color(37, 99, 235));
+        lblRolAdmin.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblRolAdmin.setForeground(COLOR_AZUL_ACCENT);
         lblRolAdmin.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        lblUsuarioAdmin.setFont(fuenteTexto);
-        lblUsuarioAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelDerechoLista.setBackground(COLOR_FONDO_GENERAL);
+        panelDerechoLista.setBorder(new EmptyBorder(15, 15, 15, 15));
 
-        lblEdadAdmin.setFont(fuenteTexto);
-        lblEdadAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelFiltros.setBackground(COLOR_PANEL_SECUNDARIO);
+        panelFiltros.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_BORDER, 1, true),
+                new EmptyBorder(5, 10, 5, 10)
+        ));
 
-        lblTelefonoAdmin.setFont(fuenteTexto);
-        lblTelefonoAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        lblBuscarNombre.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblBuscarNombre.setForeground(COLOR_TEXTO_MUTED);
 
-        lblTurnoAdmin.setFont(fuenteTexto);
-        lblTurnoAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        txtBuscarNombre.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        txtBuscarNombre.setForeground(COLOR_TEXTO_MAIN);
+        txtBuscarNombre.setBackground(COLOR_FONDO_GENERAL);
+        txtBuscarNombre.setCaretColor(COLOR_TEXTO_MAIN);
+        txtBuscarNombre.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_BORDER, 1, true),
+                BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
 
-        lblSalarioAdmin.setFont(fuenteTexto);
-        lblSalarioAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        lblFiltroTipo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblFiltroTipo.setForeground(COLOR_TEXTO_MUTED);
 
-        lblDomicilioAdmin.setFont(fuenteTexto);
-        lblDomicilioAdmin.setAlignmentX(Component.LEFT_ALIGNMENT);
+        cmbFiltroTipo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        cmbFiltroTipo.setForeground(COLOR_TEXTO_MAIN);
+        cmbFiltroTipo.setBackground(COLOR_FONDO_GENERAL);
 
-        panelDerechoLista.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        btnBuscar.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btnBuscar.setForeground(Color.WHITE);
+        btnBuscar.setBackground(COLOR_AZUL_ACCENT);
+        btnBuscar.setFocusPainted(false);
+        btnBuscar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        lblBuscarNombre.setFont(fuenteTexto);
-        txtBuscarNombre.setFont(fuenteTexto);
-        lblFiltroTipo.setFont(fuenteTexto);
-        cmbFiltroTipo.setFont(fuenteTexto);
-        btnBuscar.setFont(new Font("Segoe UI", Font.BOLD, 14));
-
+        tablaEmpleados.setBackground(COLOR_PANEL_SECUNDARIO);
+        tablaEmpleados.setForeground(COLOR_TEXTO_MAIN);
+        tablaEmpleados.setGridColor(COLOR_BORDER);
+        tablaEmpleados.setRowHeight(32);
         tablaEmpleados.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        tablaEmpleados.setRowHeight(25);
-        tablaEmpleados.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        tablaEmpleados.setSelectionBackground(COLOR_AZUL_ACCENT);
+        tablaEmpleados.setSelectionForeground(Color.WHITE);
 
-        splitPane.setDividerLocation(290);
-        splitPane.setDividerSize(5);
+        tablaEmpleados.getTableHeader().setBackground(COLOR_TARJETA_DATOS);
+        tablaEmpleados.getTableHeader().setForeground(COLOR_TEXTO_MAIN);
+        tablaEmpleados.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        tablaEmpleados.getTableHeader().setPreferredSize(new Dimension(0, 35));
+
+        scrollTabla.getViewport().setBackground(COLOR_FONDO_GENERAL);
+        scrollTabla.setBorder(BorderFactory.createLineBorder(COLOR_BORDER, 1));
+
+        splitPane.setBackground(COLOR_FONDO_GENERAL);
+        splitPane.setDividerLocation(320);
+        splitPane.setDividerSize(6);
         splitPane.setContinuousLayout(true);
+        splitPane.setBorder(null);
     }
 
     @Override
     public void configurarImagenes() {
         if (imgFotoPerfil != null) {
-            lblFotoPerfil.setIcon(imgFotoPerfil);
+            Image img = imgFotoPerfil.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+            lblFotoPerfil.setIcon(new ImageIcon(img));
         }
     }
 
@@ -199,25 +237,31 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
         add(menuBarra, BorderLayout.NORTH);
 
         panelIzquierdoPerfil.add(lblFotoPerfil);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 10)));
+        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 12)));
         panelIzquierdoPerfil.add(lblNombreAdmin);
         panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 4)));
         panelIzquierdoPerfil.add(lblRolAdmin);
         panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 15)));
-        panelIzquierdoPerfil.add(new JSeparator(JSeparator.HORIZONTAL));
+
+        JSeparator sep = new JSeparator(JSeparator.HORIZONTAL);
+        sep.setForeground(COLOR_BORDER);
+        sep.setMaximumSize(new Dimension(280, 2));
+        panelIzquierdoPerfil.add(sep);
         panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        panelIzquierdoPerfil.add(lblUsuarioAdmin);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 8)));
-        panelIzquierdoPerfil.add(lblEdadAdmin);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 8)));
-        panelIzquierdoPerfil.add(lblTelefonoAdmin);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 8)));
-        panelIzquierdoPerfil.add(lblTurnoAdmin);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 8)));
-        panelIzquierdoPerfil.add(lblSalarioAdmin);
-        panelIzquierdoPerfil.add(Box.createRigidArea(new Dimension(0, 8)));
-        panelIzquierdoPerfil.add(lblDomicilioAdmin);
+        JPanel panelGridDatos = new JPanel(new GridLayout(6, 1, 0, 10));
+        panelGridDatos.setOpaque(false);
+
+        panelGridDatos.add(crearBloqueDato("NOMBRE DE USUARIO", lblUsuarioVal));
+        panelGridDatos.add(crearBloqueDato("EDAD", lblEdadVal));
+        panelGridDatos.add(crearBloqueDato("TELÉFONO DE CONTACTO", lblTelefonoVal));
+        panelGridDatos.add(crearBloqueDato("TURNO ASIGNADO", lblTurnoVal));
+        panelGridDatos.add(crearBloqueDato("SALARIO BASE", lblSalarioVal));
+        panelGridDatos.add(crearBloqueDato("DOMICILIO", lblDomicilioVal));
+
+        panelIzquierdoPerfil.add(panelGridDatos);
+
+        panelIzquierdoPerfil.add(Box.createVerticalGlue());
 
         panelFiltros.add(lblBuscarNombre);
         panelFiltros.add(txtBuscarNombre);
@@ -229,6 +273,32 @@ public class PanelGestionEmpleados extends JPanel implements FormatoVista {
         panelDerechoLista.add(scrollTabla, BorderLayout.CENTER);
 
         add(splitPane, BorderLayout.CENTER);
+    }
+
+    /**
+     * Genera un bloque estructurado con título tenue superior y valor resaltado inferior
+     */
+    private JPanel crearBloqueDato(String etiqueta, JLabel lblValor) {
+        JPanel bloque = new JPanel();
+        bloque.setLayout(new BoxLayout(bloque, BoxLayout.Y_AXIS));
+        bloque.setBackground(COLOR_TARJETA_DATOS);
+        bloque.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_BORDER, 1, true),
+                new EmptyBorder(6, 10, 6, 10)
+        ));
+
+        JLabel lblTitulo = new JLabel(etiqueta);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 10));
+        lblTitulo.setForeground(COLOR_TEXTO_MUTED);
+
+        lblValor.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblValor.setForeground(COLOR_TEXTO_MAIN);
+
+        bloque.add(lblTitulo);
+        bloque.add(Box.createRigidArea(new Dimension(0, 2)));
+        bloque.add(lblValor);
+
+        return bloque;
     }
 
     public JButton getBtnBuscar() { return btnBuscar; }

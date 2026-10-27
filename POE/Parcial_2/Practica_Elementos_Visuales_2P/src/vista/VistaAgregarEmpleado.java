@@ -3,7 +3,6 @@ package vista;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ItemEvent;
 
 public class VistaAgregarEmpleado extends JDialog implements FormatoVista {
     private JPanel panelPrincipal;
@@ -50,7 +49,6 @@ public class VistaAgregarEmpleado extends JDialog implements FormatoVista {
         instanciarComponentes();
         definirLayout();
         configurarComponenetes();
-        configurarListeners();
         agregarComponentes();
         actualizarEstadoCampos();
     }
@@ -101,14 +99,6 @@ public class VistaAgregarEmpleado extends JDialog implements FormatoVista {
 
         btnGuardar = new JButton("Guardar Empleado");
         btnCancelar = new JButton("Cancelar");
-    }
-
-    public void configurarListeners() {
-        cmbRol.addItemListener(e -> {
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                actualizarEstadoCampos();
-            }
-        });
     }
 
     public void actualizarEstadoCampos() {

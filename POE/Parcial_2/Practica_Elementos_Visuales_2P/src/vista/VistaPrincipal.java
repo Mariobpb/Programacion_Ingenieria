@@ -1,7 +1,5 @@
 package vista;
 
-import controlador.ControlAdmin;
-import controlador.ControlRecepcion;
 import modelo.Usuario;
 
 import javax.swing.*;
@@ -12,9 +10,6 @@ public class VistaPrincipal extends JFrame implements FormatoVista {
     private PanelGestionEmpleados panelEmpleados = null;
     private PanelGestionCitas panelCitas = null;
     private Usuario usuario = null;
-
-    private ControlAdmin controlAdmin = null;
-    private ControlRecepcion controlRecepcion = null;
 
     private JPanel panelPrincipal = null;
     private JPanel panelContenido = null;
@@ -44,20 +39,6 @@ public class VistaPrincipal extends JFrame implements FormatoVista {
     @Override
     public void instanciarComponentes() {
         panelPrincipal = new JPanel();
-
-        if (usuario.getRol().contains("ADMIN")) {
-            panelEmpleados = new PanelGestionEmpleados(usuario);
-            panelEmpleados.mostrarVentana();
-
-            panelContenido = panelEmpleados;
-            controlAdmin = new ControlAdmin(this);
-        } else if (usuario.getRol().contains("RECEPCION")) {
-            panelCitas = new PanelGestionCitas(usuario);
-            panelCitas.mostrarVentana();
-
-            panelContenido = panelCitas;
-            controlRecepcion = new ControlRecepcion(this);
-        }
     }
 
     @Override
@@ -76,9 +57,17 @@ public class VistaPrincipal extends JFrame implements FormatoVista {
 
     @Override
     public void agregarComponentes() {
-        if (panelContenido != null) {
-            panelPrincipal.add(panelContenido, BorderLayout.CENTER);
-        }
+        panelPrincipal.add(panelContenido, BorderLayout.CENTER);
+    }
+
+    public void setPanelEmpleados(PanelGestionEmpleados panelEmpleados) {
+        this.panelEmpleados = panelEmpleados;
+        this.panelContenido = panelEmpleados;
+    }
+
+    public void setPanelCitas(PanelGestionCitas panelCitas) {
+        this.panelCitas = panelCitas;
+        this.panelContenido = panelCitas;
     }
 
     public Usuario getUsuario() {
