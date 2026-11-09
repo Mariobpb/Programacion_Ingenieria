@@ -5,6 +5,17 @@ public class Docente extends Persona{
     private double pahoHora;
     private double salario;
 
+    public Docente() {
+    }
+
+    public Docente(String nombre, int edad, String email, String codigo, int cantHoras, double pahoHora) {
+        super(nombre, edad, email, codigo);
+        this.cantHoras = cantHoras;
+        this.pahoHora = pahoHora;
+
+        calcularSalario();
+    }
+
     public int getCantHoras() {
         return cantHoras;
     }

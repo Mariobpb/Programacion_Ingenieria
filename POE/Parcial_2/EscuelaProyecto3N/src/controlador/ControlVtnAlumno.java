@@ -1,6 +1,7 @@
 package controlador;
 
 import modelo.Alumno;
+import modelo.Escuela;
 import vista.VtnAlumno;
 
 import java.awt.event.ActionEvent;
@@ -10,7 +11,6 @@ import java.awt.event.WindowListener;
 
 public class ControlVtnAlumno implements ActionListener, WindowListener {
     private VtnAlumno vtnAlumno = null;
-    private Alumno alumno = null;
 
     public ControlVtnAlumno(VtnAlumno vtnAlumno) {
         this.vtnAlumno = vtnAlumno;
@@ -33,13 +33,13 @@ public class ControlVtnAlumno implements ActionListener, WindowListener {
             String codigo = vtnAlumno.getTxtCodigo().getText();
             String carrera = vtnAlumno.getTxtCarrera().getText();
 
-            alumno = new Alumno(nombre, edad, email, codigo, carrera);
+            Escuela.alumno = new Alumno(nombre, edad, email, codigo, carrera);
 
         } else if (e.getSource() == vtnAlumno.getBtnBuscar()) {
             System.out.println("Codigo: "+vtnAlumno.getTxtBuscar().getText());
 
-            if (alumno != null && vtnAlumno.getTxtBuscar().getText().equals(alumno.getCodigo())) {
-                vtnAlumno.getTxtResultado().setText(alumno.mostrarInfo());
+            if (Escuela.alumno != null && vtnAlumno.getTxtBuscar().getText().equals(Escuela.alumno.getCodigo())) {
+                vtnAlumno.getTxtResultado().setText(Escuela.alumno.mostrarInfo());
             } else {
                 vtnAlumno.getTxtResultado().setText("Alumno no encontrado");
             }

@@ -1,4 +1,6 @@
-package vistas;
+package vista;
+import controlador.ControlVtnDocente;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -17,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class VtnDocente {
+    private VtnMenuPrincipal vtnMenuPrincipal = null;
+    private ControlVtnDocente controlVtnDocente = null;
 
     // Ventana principal: la clase NO hereda de JFrame
     private JFrame vtn;
@@ -63,17 +67,21 @@ public class VtnDocente {
 
     private JButton btnEvaluarAlumno;
 
+    private JLabel lblAlumnoIdentificado;
+
     // Botón inferior
     private JButton btnRegresar;
 
-    public VtnDocente() {
+
+
+    public VtnDocente(VtnMenuPrincipal vtnMenuPrincipal) {
+        this.vtnMenuPrincipal = vtnMenuPrincipal;
 
         // Crear el JFrame
         vtn = new JFrame();
 
         // Configurar la vtn
         vtn.setTitle("Docentes");
-        vtn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vtn.setSize(600, 500);
         vtn.setResizable(false);
         vtn.setLocationRelativeTo(null);
@@ -108,13 +116,18 @@ public class VtnDocente {
         btnRegresar = new JButton("Regresar a Principal");
         btnRegresar.setFont(new Font("Arial", Font.PLAIN, 14));
 
+
+
         JPanel panelInferior = new JPanel();
         panelInferior.add(btnRegresar);
+
 
         panelPrincipal.add(panelInferior, BorderLayout.SOUTH);
 
         // Agregar el panel al JFrame
         vtn.setContentPane(panelPrincipal);
+
+        controlVtnDocente = new ControlVtnDocente(this);
         vtn.setVisible(true);
     }
 
@@ -293,5 +306,82 @@ public class VtnDocente {
         panel.add(campo, gbc);
     }
 
+    public VtnMenuPrincipal getVtnMenuPrincipal() {
+        return vtnMenuPrincipal;
+    }
+
+    public JFrame getVtn() {
+        return vtn;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public JTextField getTxtEdad() {
+        return txtEdad;
+    }
+
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public JTextField getTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public JTextField getTxtHorasTrabajadas() {
+        return txtHorasTrabajadas;
+    }
+
+    public JTextField getTxtPagoHora() {
+        return txtPagoHora;
+    }
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JTextField getTxtBuscar() {
+        return txtBuscar;
+    }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JTextArea getTxtResultado() {
+        return txtResultado;
+    }
+
+    public JButton getBtnBuscarAlumno() {
+        return btnBuscarAlumno;
+    }
+
+
+
+    public JTextField getTxtCodigoAlumno() {
+        return txtCodigoAlumno;
+    }
+
+    public JTextField getTxtMatematicas() {
+        return txtMatematicas;
+    }
+
+    public JTextField getTxtFisica() {
+        return txtFisica;
+    }
+
+    public JTextField getTxtProgramacion() {
+        return txtProgramacion;
+    }
+
+    public JButton getBtnEvaluarAlumno() {
+        return btnEvaluarAlumno;
+    }
 }
 
