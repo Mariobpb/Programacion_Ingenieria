@@ -13,6 +13,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
     private String stInsertar = "INSERT INTO Alumno VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private String stConsultar = "SELECT * FROM Alumno WHERE codigo=?";
     private String stActualizar = "UPDATE Alumno SET calMate=?, calFisica=?, calProgra=?, promedio=? WHERE codigo = ?";
+    private String stEliminar = "DELETE FROM Alumno WHERE codigo=?";
 
     @Override
     public void insertar(Alumno alumno) {
@@ -55,7 +56,15 @@ public class AlumnoDAOImp implements AlumnoDAO{
 
     @Override
     public void eliminar(Alumno alumno) {
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement ps = conexion.prepareStatement(stEliminar)){
+            ps.setString(1, alumno.getCodigo());
 
+            ps.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Error al eliminar Alumno");
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

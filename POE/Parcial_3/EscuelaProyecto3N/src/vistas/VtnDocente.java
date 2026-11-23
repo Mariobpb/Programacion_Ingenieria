@@ -63,6 +63,10 @@ public class VtnDocente {
 
     private JButton btnEvaluarAlumno;
 
+    // Componentes del tab Eliminar Alumno
+    private JTextField txtEliminarAlumno;
+    private JButton btnEliminarAlumno;
+
     // Botón inferior
     private JButton btnRegresar;
 
@@ -84,7 +88,7 @@ public class VtnDocente {
         panelPrincipal = new JPanel(new BorderLayout(10, 10));
 
         panelPrincipal.setBorder(
-            BorderFactory.createEmptyBorder(15, 20, 15, 20)
+                BorderFactory.createEmptyBorder(15, 20, 15, 20)
         );
 
         // Título superior
@@ -100,6 +104,7 @@ public class VtnDocente {
         pestanas.addTab("Registrar", crearTabRegistrar());
         pestanas.addTab("Buscar", crearTabBuscar());
         pestanas.addTab("Evaluar", crearTabEvaluar());
+        pestanas.addTab("Eliminar Alumno", crearTabEliminarAlumno());
 
         panelPrincipal.add(pestanas, BorderLayout.CENTER);
 
@@ -267,14 +272,38 @@ public class VtnDocente {
         deshabilitarEvaluacion();
         return panel;
     }
-    
+
+    // =====================================================
+    // TAB ELIMINAR ALUMNO
+    // =====================================================
+
+    private JPanel crearTabEliminarAlumno() {
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        // Zona de eliminación
+        JPanel panelEliminar = new JPanel(new BorderLayout(10, 0));
+
+        txtEliminarAlumno = new JTextField();
+        btnEliminarAlumno = new JButton("Eliminar");
+
+        panelEliminar.add(txtEliminarAlumno, BorderLayout.CENTER);
+        panelEliminar.add(btnEliminarAlumno, BorderLayout.EAST);
+
+        panel.add(panelEliminar, BorderLayout.NORTH);
+
+        return panel;
+    }
+
     public void deshabilitarEvaluacion(){
         txtMatematicas.setEnabled(false);
         txtFisica.setEnabled(false);
         txtProgramacion.setEnabled(false);
         btnEvaluarAlumno.setEnabled(false);
     }
-    
+
     public void habilitarEvaluacion(){
         txtMatematicas.setEnabled(true);
         txtFisica.setEnabled(true);
@@ -372,12 +401,16 @@ public class VtnDocente {
         return btnEvaluarAlumno;
     }
 
+    public JTextField getTxtEliminarAlumno() {
+        return txtEliminarAlumno;
+    }
+
+    public JButton getBtnEliminarAlumno() {
+        return btnEliminarAlumno;
+    }
+
     public JButton getBtnRegresar() {
         return btnRegresar;
     }
-    
-    
-    
 
 }
-

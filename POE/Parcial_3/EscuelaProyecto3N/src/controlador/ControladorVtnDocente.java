@@ -32,6 +32,7 @@ public class ControladorVtnDocente implements ActionListener{
         this.vtnDoc.getBtnBuscar().addActionListener(this);
         this.vtnDoc.getBtnBuscarAlumno().addActionListener(this);
         this.vtnDoc.getBtnEvaluarAlumno().addActionListener(this);
+        this.vtnDoc.getBtnEliminarAlumno().addActionListener(this);
         
         
         this.vtnDoc.getVtn().addWindowListener(new WindowAdapter(){
@@ -83,6 +84,10 @@ public class ControladorVtnDocente implements ActionListener{
             JOptionPane.showMessageDialog(null, "Alumno " + objAl.getNombre() + " evaluado");
             vtnDoc.deshabilitarEvaluacion();
         }
+
+        if(e.getSource() == vtnDoc.getBtnEliminarAlumno()) {
+            eliminarAlumno();
+        }
     }
 
     public void almacenarDocente(){
@@ -110,6 +115,7 @@ public class ControladorVtnDocente implements ActionListener{
         vtnDoc.getTxtMatematicas().setText("");
         vtnDoc.getTxtFisica().setText("");
         vtnDoc.getTxtProgramacion().setText("");
+        vtnDoc.getTxtEliminarAlumno().setText("");
     }
     
     public void evaluarAlumno(){
@@ -122,5 +128,29 @@ public class ControladorVtnDocente implements ActionListener{
 
         
     }
-    
+
+    private void eliminarAlumno() {
+        String codigo = vtnDoc.getTxtEliminarAlumno().getText().trim();
+
+        objAl = alumnoDAO.buscarPorCodigo(codigo);
+
+        if (objAl != null) {
+            int respuesta = JOptionPane.showConfirmDialog(
+                    vtnDoc.getVtn(),
+                    "¿Está seguro de eliminar al alumno: " + objAl.getNombre() + "?",
+                    "Eliminar alumno",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+                alumnoDAO.eliminar(objAl);
+                JOptionPane.showMessageDialog(vtnDoc.getVtn(), "Alumno " + objAl.getNombre() + " eliminado");
+                borrarCajas();
+            }
+        } else {
+            JOptionPane.showMessageDialog(vtnDoc.getVtn(), "Alumno no encontrado");
+            borrarCajas();
+        }
+    }
 }
