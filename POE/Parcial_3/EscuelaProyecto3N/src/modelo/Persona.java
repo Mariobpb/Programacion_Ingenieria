@@ -1,20 +1,11 @@
 package modelo;
 
 public class Persona {
+
     private String nombre;
     private int edad;
     private String email;
     private String codigo;
-
-    public Persona() {
-    }
-
-    public Persona(String nombre, int edad, String email, String codigo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.email = email;
-        this.codigo = codigo;
-    }
 
     public String getNombre() {
         return nombre;
@@ -47,11 +38,16 @@ public class Persona {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-
-    public String mostrarInfo() {
-        return "Nombre: " + getNombre() + "\n" +
-                "Edad: " + getEdad() + "\n" +
-                "Email: " + getEmail() + "\n" +
-                "Código: " + getCodigo() + "\n";
+    
+    public String mostrarInfo(){
+        
+        String info = "Nombre :" + getNombre() + "\n" +
+                      "Edad :" + getEdad() + "\n" +
+                      "Email :" + getEmail() + "\n" +
+                      "Código :" + getCodigo() + "\n";
+        return info;
     }
+    
+
+    
 }

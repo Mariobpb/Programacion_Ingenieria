@@ -2,19 +2,8 @@ package modelo;
 
 public class Docente extends Persona{
     private int cantHoras;
-    private double pahoHora;
+    private double pagoHora;
     private double salario;
-
-    public Docente() {
-    }
-
-    public Docente(String nombre, int edad, String email, String codigo, int cantHoras, double pahoHora) {
-        super(nombre, edad, email, codigo);
-        this.cantHoras = cantHoras;
-        this.pahoHora = pahoHora;
-
-        calcularSalario();
-    }
 
     public int getCantHoras() {
         return cantHoras;
@@ -24,12 +13,12 @@ public class Docente extends Persona{
         this.cantHoras = cantHoras;
     }
 
-    public double getPahoHora() {
-        return pahoHora;
+    public double getPagoHora() {
+        return pagoHora;
     }
 
-    public void setPahoHora(double pahoHora) {
-        this.pahoHora = pahoHora;
+    public void setPagoHora(double pagoHora) {
+        this.pagoHora = pagoHora;
     }
 
     public double getSalario() {
@@ -39,26 +28,28 @@ public class Docente extends Persona{
     public void setSalario(double salario) {
         this.salario = salario;
     }
-
-    public void calcularSalario(){
-        setSalario(getCantHoras() * getPahoHora());
+    
+    public void calcularSalario() {
+        setSalario (getCantHoras() * getPagoHora());
     }
-
+    
+    
     public void evaluarAlumno(Alumno objAl, double calMate,
-                                            double calFisica,
+                                            double calfisica,
                                             double calProgra) {
+        
         objAl.setCalMate(calMate);
-        objAl.setCalFisica(calFisica);
+        objAl.setCalFisica(calfisica);
         objAl.setCalProgra(calProgra);
         objAl.obtenerPromedio();
     }
-
+    
     @Override
-    public String mostrarInfo(){
+    public String mostrarInfo() {
         String info = super.mostrarInfo();
-        info += "Horas impartidas: " + getCantHoras() + "\n" +
-                "Pago x Hora: " + getPahoHora() + "\n" +
-                "Salario: " + getSalario() + "\n";
+               info+= "Horas impartidas :" + getCantHoras() + "\n" +
+                      "Pago x hora :" + getPagoHora() + "\n" +
+                      "Salario :" + getSalario() + "\n";
         return info;
     }
 }

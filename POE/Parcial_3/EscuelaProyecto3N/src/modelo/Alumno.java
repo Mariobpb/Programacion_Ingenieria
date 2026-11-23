@@ -1,19 +1,12 @@
 package modelo;
 
-public class Alumno extends Persona{
+public class Alumno extends Persona {
+
     private String carrera;
     private double calMate;
     private double calFisica;
     private double calProgra;
-    private double Promedio;
-
-    public Alumno() {
-    }
-
-    public Alumno(String nombre, int edad, String email, String codigo, String carrera) {
-        super(nombre, edad, email, codigo);
-        this.carrera = carrera;
-    }
+    private double promedio;
 
     public String getCarrera() {
         return carrera;
@@ -48,28 +41,29 @@ public class Alumno extends Persona{
     }
 
     public double getPromedio() {
-        return Promedio;
+        return promedio;
     }
 
     public void setPromedio(double promedio) {
-        Promedio = promedio;
+        this.promedio = promedio;
     }
-
-    public void obtenerPromedio() {
-        setPromedio(    ( getCalMate() +
-                        getCalFisica() +
-                        getCalProgra()) / 3
-        );
-    }
-
+    
+    
+    public void obtenerPromedio() {   
+        setPromedio (  (getCalMate() + 
+                       getCalFisica() + 
+                       getCalProgra()) / 3  );
+    } 
+    
     @Override
-    public String mostrarInfo(){
+    public String mostrarInfo() {  
         String info = super.mostrarInfo();
-        info += "Carrera: " + getCarrera() + "\n" +
-                "Matemáticas: " + getCalMate() + "\n" +
-                "Física: " + getCalFisica() + "\n" +
-                "Programación: " + getCalProgra() + "\n" +
-                "Promedio: " + getPromedio() + "\n";
+               info+= "Carrera :" + getCarrera() + "\n" +
+                      "Matemáticas :" + getCalMate() + "\n" +
+                      "Fisica :" + getCalFisica() + "\n" +
+                      "Programación :" + getCalProgra() + "\n" +
+                      "Promedio :" + getPromedio() + "\n";
         return info;
     }
+    
 }
